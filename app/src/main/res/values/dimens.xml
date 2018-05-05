@@ -9,4 +9,11 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="fab_size">54dp</dimen>
     <dimen name="fab_elevation">24dp</dimen>
+
+    <!-- custom timer view -->
+    <dimen name="hour_text_size">20sp</dimen>
+    <dimen name="divider1_text_size">20sp</dimen>
+    <dimen name="minute_text_size">20sp</dimen>
+    <dimen name="divider2_text_size">20sp</dimen>
+    <dimen name="second_text_size">20sp</dimen>
 </resources>

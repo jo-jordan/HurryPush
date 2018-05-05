@@ -1,9 +1,13 @@
 package com.lzjlxebr.hurrypush.service;
 
 import android.app.Service;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.IBinder;
 
+import com.lzjlxebr.hurrypush.db.HurryPushContract;
+import com.lzjlxebr.hurrypush.entity.DefecationEvent;
 import com.lzjlxebr.hurrypush.entity.TimeUpdateEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -25,6 +29,7 @@ public class TimerService extends Service {
     private final int mOneHourInMillis = 1;
     private long mStartTimeInMillis;
     private long mEndTimeInMillis;
+    private long insertedId;
 
     private boolean running = false;
 
@@ -132,15 +137,45 @@ public class TimerService extends Service {
                 mMin = "00";
                 minutes = 0;
                 mHour = "01";
+                if("01".equals(mHour)){
+                    stopTimer();
+                    stopSelf();
+                }
             }
             sendEvent();
             return;
         }
     }
 
+    public void saveUncompletedDataToDatabase(){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_INSERT_TIME,Calendar.getInstance().getTimeInMillis());
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_START_TIME,mStartTimeInMillis);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_END_TIME,mEndTimeInMillis);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_CONSTIPATION,0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_STICKINESS,0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_SMELL,0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_GAIN_EXP,0.0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_OVERALL_RATING,0.0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_SERVER_CALL_BACK,0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_IS_USER_FINISH,0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_UPLOAD_TO_SERVER,0);
+
+        Uri insertUri = HurryPushContract.DefecationRecordEntry.DEFECATION_RECORD_URI;
+        Uri insertedUri = getContentResolver().insert(insertUri,contentValues);
+        insertedId = Long.parseLong(insertedUri.getQueryParameter("insertedId"));
+
+        sendDefecationEvent();
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         stopTimer();
+        saveUncompletedDataToDatabase();
+    }
+
+    private void sendDefecationEvent(){
+        EventBus.getDefault().postSticky(new DefecationEvent(mStartTimeInMillis,mEndTimeInMillis,insertedId));
     }
 }

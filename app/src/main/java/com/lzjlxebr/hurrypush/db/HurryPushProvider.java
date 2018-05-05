@@ -158,7 +158,7 @@ public class HurryPushProvider extends ContentProvider {
                 );
                 if (numRowInserted > 0) {
                     getContext().getContentResolver().notifyChange(uri, null);
-                    return uri;
+                    return uri.buildUpon().appendQueryParameter("insertedId",numRowInserted+"").build();
                 } else {
                     return null;
                 }

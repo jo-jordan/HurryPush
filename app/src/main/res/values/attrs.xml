@@ -15,7 +15,12 @@
         <attr name="minuteWidth" format="dimension"/>
         <attr name="secondWidth" format="dimension"/>
         <attr name="dividerHorizontal" format="dimension"/>
-        <attr name="dividerVertical" format="dimension"/>
+        <attr name="timerViewTheme" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="HurryPushTimerViewColor">
+        <attr name="timerColor" format="color"/>
+        <attr name="colonColor" format="color"/>
     </declare-styleable>
 
 </resources>
