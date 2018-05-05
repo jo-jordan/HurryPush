@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
+
     <com.lzjlxebr.hurrypush.custom.HurryPushTimerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:clockTheme="@style/clockTheme"
+        app:divider1Width="@dimen/divider1_width"
+        app:divider2Width="@dimen/divider2_width"
         app:hourWidth="@dimen/hour_width"
         app:minuteWidth="@dimen/minute_width"
         app:secondWidth="@dimen/second_width"
-        app:divider1Width="@dimen/divider1_width"
-        app:divider2Width="@dimen/divider2_width"
-        app:timerWidth="10dp"
-        app:clockTheme="@style/clockTheme"/>
+        app:timerWidth="10dp" />
 
 </LinearLayout>

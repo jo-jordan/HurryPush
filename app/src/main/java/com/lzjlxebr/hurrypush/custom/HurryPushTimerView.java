@@ -33,7 +33,9 @@ public class HurryPushTimerView extends LinearLayout{
     @DimenRes
     private float mSecWidth = 0.0f;
     @DimenRes
-    private float mDividerVertical = 0.0f;
+    private float mDividerVertical1 = 0.0f;
+    @DimenRes
+    private float mDividerVertical2 = 0.0f;
 
     private int mHour = -1;
 
@@ -45,14 +47,17 @@ public class HurryPushTimerView extends LinearLayout{
 
     public HurryPushTimerView(Context context) {
         super(context);
+        init(context, null, 0);
     }
 
     public HurryPushTimerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        init(context, attrs, 0);
     }
 
     public HurryPushTimerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context, attrs, defStyleAttr);
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -63,11 +68,12 @@ public class HurryPushTimerView extends LinearLayout{
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LyGoogleClock, defStyleAttr, 0);
             try {
-                mClockWidth = typedArray.getDimension(R.styleable.LyGoogleClock_lyClockWidth, 0.0f);
-                mHourWidth = typedArray.getDimension(R.styleable.LyGoogleClock_lyHourWidth, 0.0f);
-                mMinWidth = typedArray.getDimension(R.styleable.LyGoogleClock_lyMinWidth, 0.0f);
-                mSecWidth = typedArray.getDimension(R.styleable.LyGoogleClock_lySecWidth, 0.0f);
-                mDividerVertical = typedArray.getDimension(R.styleable.LyGoogleClock_lyDividerVertical, 0.0f);
+                mClockWidth = typedArray.getDimension(R.styleable.timerWidth, 0.0f);
+                mHourWidth = typedArray.getDimension(R.styleable.hourWidth, 0.0f);
+                mMinWidth = typedArray.getDimension(R.styleable.minuteWidth, 0.0f);
+                mSecWidth = typedArray.getDimension(R.styleable.secondWidth, 0.0f);
+                mDividerVertical1 = typedArray.getDimension(R.styleable.divider1Width, 0.0f);
+                mDividerVertical2 = typedArray.getDimension(R.styleable.divider2Width, 0.0f);
             } finally {
                 typedArray.recycle();
             }
@@ -85,15 +91,20 @@ public class HurryPushTimerView extends LinearLayout{
         changeSize(mHourWidth, mClockWidth, mTvHour);
         changeSize(mMinWidth, mClockWidth, mTvMin);
         changeSize(mSecWidth, mClockWidth, mTvSec);
-        changeSize(mDividerVertical, mClockWidth, mTvColon1);
-        changeSize(mDividerVertical, mClockWidth, mTvColon2);
+        changeSize(mDividerVertical1, mClockWidth, mTvColon1);
+        changeSize(mDividerVertical2, mClockWidth, mTvColon2);
 
         View mViewDividerVertical1 = findViewById(R.id.divider_hour_minute);
 
 
-        if (mDividerVertical != 0.0f) {
+        if (mDividerVertical1 != 0.0f) {
             ViewGroup.LayoutParams params = mViewDividerVertical1.getLayoutParams();
-            params.height = (int) mDividerVertical;
+            params.height = (int) mDividerVertical1;
+            mViewDividerVertical1.setLayoutParams(params);
+        }
+        if (mDividerVertical2 != 0.0f) {
+            ViewGroup.LayoutParams params = mViewDividerVertical1.getLayoutParams();
+            params.height = (int) mDividerVertical2;
             mViewDividerVertical1.setLayoutParams(params);
         }
     }

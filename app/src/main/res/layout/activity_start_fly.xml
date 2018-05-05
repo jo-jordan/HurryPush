@@ -26,14 +26,6 @@
         android:layout_centerHorizontal="true"
         />
 
-    <fragment
-        android:id="@+id/inner_timer_notification_fragment"
-        android:name="com.lzjlxebr.hurrypush.base.TimerInnerNotificationFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/start_fly_fragment"
-        android:layout_centerHorizontal="true"/>
-
 
 
     <com.github.clans.fab.FloatingActionMenu

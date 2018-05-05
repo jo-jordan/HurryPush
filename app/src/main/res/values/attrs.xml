@@ -11,10 +11,11 @@
 
     <declare-styleable name="HurryPushTimerView">
         <attr name="timerWidth" format="dimension"/>
-        <attr name="timerHeight" format="dimension"/>
+        <attr name="hourWidth" format="dimension"/>
         <attr name="minuteWidth" format="dimension"/>
         <attr name="secondWidth" format="dimension"/>
-        <attr name="dividerHorizontal" format="dimension"/>
+        <attr name="divider1Width" format="dimension"/>
+        <attr name="divider2Width" format="dimension"/>
         <attr name="timerViewTheme" format="reference"/>
     </declare-styleable>
 
