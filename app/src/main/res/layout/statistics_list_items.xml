@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/statistics_tv_insert_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fake data" />
+
+    <TextView
+        android:id="@+id/statistics_tv_start_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fake data" />
+
+    <TextView
+        android:id="@+id/statistics_tv_end_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fake data" />
+
+    <TextView
+        android:id="@+id/statistics_tv_is_user_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fake data" />
+
+    <TextView
+        android:id="@+id/statistics_tv_gain_exp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fake data" />
+
+    <TextView
+        android:id="@+id/statistics_tv_smell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fake data" />
+
+    <TextView
+        android:id="@+id/statistics_tv_constipation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fake data" />
+
+    <TextView
+        android:id="@+id/statistics_tv_stickiness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fake data" />
+
+    <TextView
+        android:id="@+id/statistics_tv_overall_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fake data" />
+
+    <TextView
+        android:id="@+id/statistics_tv_upload_to_server"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fake data" />
+
+    <TextView
+        android:id="@+id/statistics_tv_server_call_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fake data" />
+</LinearLayout>

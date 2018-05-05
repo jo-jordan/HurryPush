@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="General Setting">
+        <EditTextPreference
+            android:defaultValue="@string/client_nick_name_default_value"
+            android:icon="@drawable/ic_change_nick_name"
+            android:inputType="text"
+            android:key="@string/client_nick_name_key"
+            android:summary="@string/client_nick_name_default_value"
+            android:title="@string/client_nick_name_label"
+            android:visibility="visible" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Advanced Setting"
+        >
+        <Preference
+            android:icon="@drawable/ic_sync"
+            android:key="@string/open_sync_service_key"
+            android:title="@string/open_sync_service_label" />
+    </PreferenceCategory>
+</PreferenceScreen>

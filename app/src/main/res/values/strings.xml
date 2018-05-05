@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">HurryPush</string>
+    <!-- settings menu -->
+    <string name="menu_action_settings">Settings</string>
+    <!-- problem report menu -->
+    <string name="menu_action_report">Problem Report</string>
+
+    <!-- navigation drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_drawer_item_settings">Settings</string>
+
+    <!-- settings -->
+    <!-- client info settings -->
+    <string name="client_nick_name_label">Change Nick Name</string>
+    <string name="client_nick_name_key" translatable="false">nick_name</string>
+    <string name="client_nick_name_default_value" translatable="false">Click to type in a name</string>
+    <!-- advanced settings-->
+    <string name="open_sync_service_label">Sync Data From Internet Now</string>
+    <string name="open_sync_service_key">open_sync_service</string>
+
+    <!-- client info display -->
+    <string name="client_current_level_label">Current Level.</string>
+    <string name="client_current_level_key" translatable="false">current_level</string>
+    <string name="client_current_level_default_value" translatable="false">10</string>
+
+    <string name="client_current_exp_label">Exp.</string>
+    <string name="client_current_exp_key" translatable="false">exp</string>
+    <string name="client_current_exp_default_value" translatable="false">6666</string>
+
+    <!-- content provider -->
+    <string name="content_authority">com.lzjlxebr.hurrypush</string>
+
+    <!-- today -->
+    <string name="today_load_error">Load error,go to fix bug.</string>
+
+    <!-- achievement -->
+    <string name="achievement_load_error">Load error,go to fix bug.</string>
+
+    <!-- statistics -->
+    <string name="statistics_load_error">Load error,go to fix bug.</string>
+
+    <!-- notification -->
+    <string name="channel_name">liuxi520</string>
+    <string name="channel_description">Just A Notification Channel</string>
+
+    <!-- fab -->
+    <string name="floating_action_go_timer">Start flyyyyyyyyyyyyyyyyy.</string>
+
+    <string name="title_activity_start_fly">StartFlyActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+
+</resources>

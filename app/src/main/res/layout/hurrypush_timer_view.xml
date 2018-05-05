@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:id="@+id/tv_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="12"
+        android:textSize="@dimen/hour_text_size" />
+
+    <TextView
+        android:id="@+id/divider_hour_minute"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textAlignment="center"
+        android:text=":"
+        android:textSize="@dimen/divider1_text_size" />
+
+
+
+    <TextView
+        android:id="@+id/tv_minute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10"
+        android:textSize="@dimen/minute_text_size" />
+
+    <TextView
+        android:id="@+id/divider_minute_second"
+        android:layout_width="8dp"
+        android:layout_height="match_parent"
+        android:textAlignment="center"
+        android:text=":"
+        android:textSize="@dimen/divider2_text_size" />
+
+    <TextView
+        android:id="@+id/tv_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="05"
+        android:textSize="@dimen/second_text_size" />
+
+
+</LinearLayout>
