@@ -34,7 +34,7 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
-    <style name="timerViewTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="clockTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="timerColor">@color/colorPrimary</item>
         <item name="colonColor">@color/colorPrimary</item>
     </style>

@@ -22,4 +22,8 @@
     <dimen name="hour_width">40dp</dimen>
     <dimen name="divider1_width">40dp</dimen>
     <dimen name="divider2_width">40dp</dimen>
+
+    <!-- survey card view-->
+    <dimen name="card_padding">15dp</dimen>
+    <dimen name="card_text_margin_top">36dp</dimen>
 </resources>

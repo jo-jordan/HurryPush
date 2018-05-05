@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.entity.EmptyEvent;
 import com.lzjlxebr.hurrypush.entity.TimeUpdateEvent;
 
@@ -66,14 +67,14 @@ public class HurryPushTimerView extends LinearLayout{
         View.inflate(context, R.layout.hurrypush_timer_view, this);
 
         if (attrs != null) {
-            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LyGoogleClock, defStyleAttr, 0);
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.HurryPushTimerView, defStyleAttr, 0);
             try {
-                mClockWidth = typedArray.getDimension(R.styleable.timerWidth, 0.0f);
-                mHourWidth = typedArray.getDimension(R.styleable.hourWidth, 0.0f);
-                mMinWidth = typedArray.getDimension(R.styleable.minuteWidth, 0.0f);
-                mSecWidth = typedArray.getDimension(R.styleable.secondWidth, 0.0f);
-                mDividerVertical1 = typedArray.getDimension(R.styleable.divider1Width, 0.0f);
-                mDividerVertical2 = typedArray.getDimension(R.styleable.divider2Width, 0.0f);
+                mClockWidth = typedArray.getDimension(R.styleable.HurryPushTimerView_timerWidth, 0.0f);
+                mHourWidth = typedArray.getDimension(R.styleable.HurryPushTimerView_hourWidth, 0.0f);
+                mMinWidth = typedArray.getDimension(R.styleable.HurryPushTimerView_minuteWidth, 0.0f);
+                mSecWidth = typedArray.getDimension(R.styleable.HurryPushTimerView_secondWidth, 0.0f);
+                mDividerVertical1 = typedArray.getDimension(R.styleable.HurryPushTimerView_divider1Width, 0.0f);
+                mDividerVertical2 = typedArray.getDimension(R.styleable.HurryPushTimerView_divider2Width, 0.0f);
             } finally {
                 typedArray.recycle();
             }

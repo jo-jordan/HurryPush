@@ -16,7 +16,7 @@
         <attr name="secondWidth" format="dimension"/>
         <attr name="divider1Width" format="dimension"/>
         <attr name="divider2Width" format="dimension"/>
-        <attr name="timerViewTheme" format="reference"/>
+        <attr name="clockTheme" format="reference"/>
     </declare-styleable>
 
     <declare-styleable name="HurryPushTimerViewColor">
