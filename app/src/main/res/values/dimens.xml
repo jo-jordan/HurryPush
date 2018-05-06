@@ -11,17 +11,18 @@
     <dimen name="fab_elevation">24dp</dimen>
 
     <!-- custom timer view -->
+    <dimen name="timer_width">300dp</dimen>
     <dimen name="hour_text_size">20sp</dimen>
     <dimen name="divider1_text_size">20sp</dimen>
-    <dimen name="minute_text_size">20sp</dimen>
-    <dimen name="divider2_text_size">20sp</dimen>
-    <dimen name="second_text_size">20sp</dimen>
+    <dimen name="minute_text_size">80sp</dimen>
+    <dimen name="divider2_text_size">80sp</dimen>
+    <dimen name="second_text_size">80sp</dimen>
 
-    <dimen name="minute_width">40dp</dimen>
-    <dimen name="second_width">40dp</dimen>
+    <dimen name="minute_width">96dp</dimen>
+    <dimen name="second_width">96dp</dimen>
     <dimen name="hour_width">40dp</dimen>
     <dimen name="divider1_width">40dp</dimen>
-    <dimen name="divider2_width">40dp</dimen>
+    <dimen name="divider2_width">96dp</dimen>
 
     <!-- survey card view-->
     <dimen name="card_padding">15dp</dimen>
