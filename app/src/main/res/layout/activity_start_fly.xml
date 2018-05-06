@@ -20,11 +20,17 @@
         android:id="@+id/start_fly_fragment"
         android:name="com.lzjlxebr.hurrypush.base.TimerFragment"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
 
         android:layout_below="@id/start_fly_toolbar"
         android:layout_centerHorizontal="true"
         />
+
+    <fragment
+        android:id="@+id/timer_inner_notification_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/start_fly_fragment"/>
 
 
 
