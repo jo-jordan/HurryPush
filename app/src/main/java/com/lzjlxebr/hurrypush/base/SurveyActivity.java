@@ -1,13 +1,16 @@
 package com.lzjlxebr.hurrypush.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.lzjlxebr.hurrypush.R;
+import com.lzjlxebr.hurrypush.adapter.SurveyCardFragmentAdapter;
 import com.lzjlxebr.hurrypush.entity.DefecationEvent;
 import com.lzjlxebr.hurrypush.entity.EmptyEvent;
 
@@ -22,18 +25,22 @@ public class SurveyActivity extends AppCompatActivity {
     private long startTime;
     private long endTime;
     private long id;
+
+    private SurveyCardFragmentAdapter mSurveyCardFragmentAdapter;
+    private ShadowTransformer mShadowTransformer;
+    private ViewPager mViewPager;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
 
         initToolBar();
+        initVariables();
+        mViewPager.setAdapter(mSurveyCardFragmentAdapter);
+        mViewPager.setPageTransformer(false,mShadowTransformer);
+        setScaleable();
+
         EventBus.getDefault().register(this);
-
-        boolean reg = EventBus.getDefault().isRegistered(this);
-        Log.d(LOG_TAG,"is reged? " + reg);
-
-
     }
 
     // set toolbar as actionbar
@@ -72,5 +79,20 @@ public class SurveyActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    private void initVariables(){
+        mSurveyCardFragmentAdapter = new SurveyCardFragmentAdapter(getSupportFragmentManager(),dpToPiexls(2,this));
+        mViewPager = findViewById(R.id.survey_view_pager);
+        mShadowTransformer = new ShadowTransformer(mViewPager,mSurveyCardFragmentAdapter);
+    }
+
+    private float dpToPiexls(int dp, Context context) {
+        return dp * (context.getResources().getDisplayMetrics().density);
+    }
+
+    private void setScaleable(){
+        mShadowTransformer.enableScaling();
+
     }
 }

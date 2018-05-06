@@ -50,7 +50,7 @@
 
 
         <com.github.clans.fab.FloatingActionMenu
-            android:id="@+id/floatingActionMenu"
+            android:id="@+id/go_to_fly_fam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -69,7 +69,7 @@
             >
 
             <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/floatingActionGoTimer"
+                android:id="@+id/go_to_fly_fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_input_add"

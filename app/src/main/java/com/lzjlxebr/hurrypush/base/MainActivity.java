@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     public void initFAB() {
-        mFloatingActionMenu = findViewById(R.id.floatingActionMenu);
-        startFly = findViewById(R.id.floatingActionGoTimer);
+        mFloatingActionMenu = findViewById(R.id.go_to_fly_fam);
+        startFly = findViewById(R.id.go_to_fly_fab);
 
         startFly.setOnClickListener(new View.OnClickListener() {
             @Override

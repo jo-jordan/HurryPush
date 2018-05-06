@@ -18,7 +18,7 @@ public class SurveyCardFragmentAdapter extends FragmentStatePagerAdapter impleme
     private float mBaseElevation;
 
 
-    SurveyCardFragmentAdapter(FragmentManager fm, float baseElevation){
+    public SurveyCardFragmentAdapter(FragmentManager fm, float baseElevation){
         super(fm);
 
         mFragments = new ArrayList<>();

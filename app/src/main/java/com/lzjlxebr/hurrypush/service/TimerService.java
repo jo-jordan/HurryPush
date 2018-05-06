@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.lzjlxebr.hurrypush.db.HurryPushContract;
 import com.lzjlxebr.hurrypush.entity.DefecationEvent;
@@ -49,8 +50,8 @@ public class TimerService extends Service {
         return START_REDELIVER_INTENT;
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
     private void sendEvent() {
+        Log.d(LOG_TAG,"hour: " + mHour + ", min: " + mMin + " ,sec: " + mSec);
         EventBus.getDefault().post(new TimeUpdateEvent(
                 mHour,
                 mMin,
@@ -82,17 +83,17 @@ public class TimerService extends Service {
 
         mHour = "00";
         mMin = "00";
-        mSec = "00";
+        mSec = "-1";
 
 
     }
 
     private void stopTimer() {
-        Calendar calendar = Calendar.getInstance();
-        mEndTimeInMillis = calendar.getTimeInMillis();
 
         if (mTimer != null) {
             mTimer.cancel();
+            Calendar calendar = Calendar.getInstance();
+            mEndTimeInMillis = calendar.getTimeInMillis();
         }
 
         running = false;
@@ -105,11 +106,11 @@ public class TimerService extends Service {
         int minutes = 0;
         int seconds = -1;
 
-        if (!"00".equals(mSec))
+        //if ("00".equals(mSec))
             seconds = Integer.parseInt(mSec);
-        if (!"00".equals(mMin))
+        //if ("00".equals(mMin))
             minutes = Integer.parseInt(mMin);
-        if (!"00".equals(mHour))
+        //if ("00".equals(mHour))
             hours = Integer.parseInt(mHour);
 
 
