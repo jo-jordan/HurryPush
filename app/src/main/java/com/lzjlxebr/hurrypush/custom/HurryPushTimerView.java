@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.support.annotation.DimenRes;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -19,6 +20,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 public class HurryPushTimerView extends LinearLayout{
+    private static final String LOG_TAG = "HurryPushTimerView";
     private TextView mTvHour;
     private TextView mTvMin;
     private TextView mTvSec;
@@ -131,8 +133,9 @@ public class HurryPushTimerView extends LinearLayout{
 
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.MAIN,priority = 10)
     public void onEventMainThread(EmptyEvent event) {
+        Log.d(LOG_TAG,LOG_TAG+"get event: "+event.getClass().getName());
         if (event == null) {
             return;
         }
@@ -148,5 +151,9 @@ public class HurryPushTimerView extends LinearLayout{
         mTvMin.setText(event.getmMin());
 
         mTvHour.setText(event.getmHour());
+    }
+
+    public void unRegEventBus(){
+        EventBus.getDefault().unregister(this);
     }
 }
