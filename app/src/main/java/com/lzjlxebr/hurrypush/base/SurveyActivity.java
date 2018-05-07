@@ -54,7 +54,7 @@ public class SurveyActivity extends AppCompatActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     public void onEventMainThread(EmptyEvent event) {
-        Log.d(LOG_TAG,event.getClass().getName());
+        Log.d(LOG_TAG,LOG_TAG+"get event: "+event.getClass().getName());
 
         if (event == null) {
             Log.d(LOG_TAG,"event is null.");

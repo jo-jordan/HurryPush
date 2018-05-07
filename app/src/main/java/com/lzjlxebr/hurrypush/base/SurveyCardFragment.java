@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lzjlxebr.hurrypush.R;
+import com.lzjlxebr.hurrypush.adapter.CardAdapter;
 
 public class SurveyCardFragment extends Fragment {
     private CardView mCardView;
@@ -20,6 +21,7 @@ public class SurveyCardFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_survey_card, container, false);
         mCardView = view.findViewById(R.id.survey_card_view);
+
         mCardView.setMaxCardElevation(mCardView.getCardElevation()
                 * CardAdapter.MAX_ELEVATION_FACTOR);
         return view;
