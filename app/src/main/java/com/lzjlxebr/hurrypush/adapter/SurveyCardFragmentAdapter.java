@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.widget.CardView;
 import android.view.ViewGroup;
 
-import com.lzjlxebr.hurrypush.base.CardAdapter;
 import com.lzjlxebr.hurrypush.base.SurveyCardFragment;
 
 import java.util.ArrayList;
