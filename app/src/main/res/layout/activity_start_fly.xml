@@ -19,19 +19,18 @@
     <fragment
         android:id="@+id/start_fly_fragment"
         android:name="com.lzjlxebr.hurrypush.base.TimerFragment"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
-
         android:layout_below="@id/start_fly_toolbar"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_centerHorizontal="true" />
 
     <fragment
         android:id="@+id/timer_inner_notification_fragment"
+        android:name="com.lzjlxebr.hurrypush.base.TimerInnerNotificationFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/start_fly_fragment"/>
-
+        android:layout_below="@id/start_fly_fragment"
+        tools:layout="@android:layout/list_content" />
 
 
     <com.github.clans.fab.FloatingActionMenu
@@ -42,10 +41,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_gravity="end|bottom"
-        android:layout_marginStart="0dp"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginStart="0dp"
 
         app:menu_backgroundColor="@android:color/transparent"
         app:menu_icon="@drawable/ic_stop"
@@ -65,7 +64,6 @@
 
 
     </com.github.clans.fab.FloatingActionMenu>
-
 
 
 </RelativeLayout>
