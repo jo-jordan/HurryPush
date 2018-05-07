@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/timer_inner_notification_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="96dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_notification"
+            android:layout_width="96dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:src="@drawable/ic_av_timer" />
+
+        <TextView
+            android:id="@+id/tv_title_inner_notification"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/text_margin_left"
+            android:layout_toRightOf="@id/iv_notification"
+            android:text="bslbslbslbsl" />
+
+        <TextView
+            android:id="@+id/tv_content_inner_notification"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title_inner_notification"
+            android:layout_marginLeft="@dimen/text_margin_left"
+            android:layout_toRightOf="@id/iv_notification"
+            android:text="fdsfesfhneisufnesfnesiu" />
+
+        <Button
+            android:id="@+id/btn_done_inner_notification"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/done" />
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
