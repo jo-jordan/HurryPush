@@ -31,7 +31,6 @@ public class HurryPushContract {
         public static final String COLUMN_LEVEL_NUMBER = "level_number";
         public static final String COLUMN_LEVEL_EXP_SINGLE = "level_exp_single";
         public static final String COLUMN_LEVEL_EXP_TOTAL = "level_exp_total";
-
     }
 
     public static final class DefecationRecordEntry implements BaseColumns {
@@ -53,5 +52,23 @@ public class HurryPushContract {
         public static final String COLUMN_OVERALL_RATING = "overall_rating";
         public static final String COLUMN_UPLOAD_TO_SERVER = "upload_to_server";
         public static final String COLUMN_SERVER_CALL_BACK = "server_call_back";
+    }
+
+    public static final class AchievementProgressEntry implements BaseColumns {
+        public static final String PATH_ACHIEVEMENT_PROGRESS = "achievement_progress";
+        public static final Uri ACHIEVEMENT_PROGRESS_URI = Uri.parse(BASE_CONTENT_URI).buildUpon().appendPath(PATH_ACHIEVEMENT_PROGRESS).build();
+
+        public static final String TABLE_NAME = "achievement_progress";
+
+        public static final String DEFAULT_SORT_ORDER = "achi_id asc";
+
+        public static final String COLUMN_ACHI_TYPE = "achi_type";
+        public static final String COLUMN_ACHI_REQUIRED_MINUTES = "achi_required_minutes";
+        public static final String COLUMN_ACHI_REQUIRED_DAYS = "achi_required_days";
+        public static final String COLUMN_ACHI_ID = "achi_id";
+        public static final String COLUMN_ACHI_NAME = "achi_name";
+        public static final String COLUMN_ACHI_CONDITION = "achi_condition";
+        public static final String COLUMN_ACHI_PROGRESS = "achi_progress";
+        public static final String COLUMN_UPDATE_TIME = "update_time";
     }
 }

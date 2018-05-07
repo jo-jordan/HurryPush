@@ -51,12 +51,24 @@ public class HurryPushDbHelper extends SQLiteOpenHelper {
                         HurryPushContract.DefecationRecordEntry.COLUMN_SERVER_CALL_BACK + " integer not null" +
                         ");";
 
+        final String SQL_CREATE_ACHIEVEMENT_PROGRESS_TABLE =
+                "create table " + HurryPushContract.AchievementProgressEntry.TABLE_NAME + " (" +
+                        HurryPushContract.AchievementProgressEntry._ID + " integer primary key autoincrement," +
+                        HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_TYPE + " integer not null," +
+                        HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_REQUIRED_MINUTES + " integer not null," +
+                        HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_REQUIRED_DAYS + " integer not null," +
+                        HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_ID + " integer not null," +
+                        HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_NAME + " text not null," +
+                        HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_CONDITION + " integer not null," +
+                        HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS + " integer not null," +
+                        HurryPushContract.AchievementProgressEntry.COLUMN_UPDATE_TIME + " integer not null" +
+                        ");";
+
         db.execSQL(SQL_CREATE_CLIENT_INFO_TABLE);
         db.execSQL(SQL_CREATE_LEVEL_RULE_TABLE);
         db.execSQL(SQL_CREATE_DEFECATION_RECORD_TABLE);
-        Log.d(LOG_TAG,"SQL_CREATE_CLIENT_INFO_TABLE: "+SQL_CREATE_CLIENT_INFO_TABLE);
-        Log.d(LOG_TAG,"SQL_CREATE_LEVEL_RULE_TABLE: "+SQL_CREATE_LEVEL_RULE_TABLE);
-        Log.d(LOG_TAG,"SQL_CREATE_DEFECATION_RECORD_TABLE: "+SQL_CREATE_DEFECATION_RECORD_TABLE);
+        db.execSQL(SQL_CREATE_ACHIEVEMENT_PROGRESS_TABLE);
+
 
         Log.d(LOG_TAG,"All databases has been created.");
 
@@ -68,6 +80,7 @@ public class HurryPushDbHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists " + HurryPushContract.ClientInfoEntry.TABLE_NAME);
         db.execSQL("drop table if exists " + HurryPushContract.LevelRuleEntry.TABLE_NAME);
         db.execSQL("drop table if exists " + HurryPushContract.DefecationRecordEntry.TABLE_NAME);
+        db.execSQL("drop table if exists " + HurryPushContract.AchievementProgressEntry.TABLE_NAME);
 
         onCreate(db);
     }
