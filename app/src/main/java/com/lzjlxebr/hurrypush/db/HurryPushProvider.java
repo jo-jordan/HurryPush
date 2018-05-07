@@ -24,6 +24,9 @@ public class HurryPushProvider extends ContentProvider {
     public static final int CODE_DEFECATION_RECORD_WITH_INSERT_TIME = 301;
     public static final int CODE_DEFECATION_RECORD_BY_10 = 310;
 
+    // add matcher for achievement
+    public static final int CODE_ACHIEVEMENT = 400;
+
     // add all needed uri matcher
     private static final UriMatcher uriMatcher = buildUriMatcher();
     private HurryPushDbHelper hurryPushDbHelper;
@@ -40,6 +43,9 @@ public class HurryPushProvider extends ContentProvider {
         matcher.addURI(authority, HurryPushContract.DefecationRecordEntry.PATH_DEFECATION_RECORD, CODE_DEFECATION_RECORD);
         matcher.addURI(authority, HurryPushContract.DefecationRecordEntry.PATH_DEFECATION_RECORD + "/#", CODE_DEFECATION_RECORD_WITH_INSERT_TIME);
         matcher.addURI(authority, HurryPushContract.DefecationRecordEntry.PATH_DEFECATION_RECORD + "/10", CODE_DEFECATION_RECORD_BY_10);
+
+
+        matcher.addURI(authority, HurryPushContract.AchievementProgressEntry.PATH_ACHIEVEMENT_PROGRESS, CODE_ACHIEVEMENT);
 
         return matcher;
     }
@@ -129,6 +135,19 @@ public class HurryPushProvider extends ContentProvider {
                         null,
                         sortOrder,
                         "10"
+                );
+                break;
+            }
+
+            case CODE_ACHIEVEMENT: {
+                cursor = hurryPushDbHelper.getReadableDatabase().query(
+                        HurryPushContract.AchievementProgressEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
                 );
                 break;
             }
@@ -251,6 +270,32 @@ public class HurryPushProvider extends ContentProvider {
 
                 return rowsInserted;
             }
+            case CODE_ACHIEVEMENT: {
+                db.beginTransaction();
+                int rowsInserted = 0;
+                try {
+
+                    for (ContentValues value : values) {
+                        long _id = db.insert(
+                                HurryPushContract.AchievementProgressEntry.TABLE_NAME,
+                                null,
+                                value
+                        );
+
+                        if (_id != -1) {
+                            rowsInserted++;
+                        }
+                    }
+                    db.setTransactionSuccessful();
+                } finally {
+                    db.endTransaction();
+                }
+                if (rowsInserted > 0) {
+                    getContext().getContentResolver().notifyChange(uri, null);
+                }
+
+                return rowsInserted;
+            }
             default:
                 return super.bulkInsert(uri, values);
         }
@@ -281,6 +326,14 @@ public class HurryPushProvider extends ContentProvider {
             case CODE_LEVEL_RULE: {
                 numRowDeleted = hurryPushDbHelper.getWritableDatabase().delete(
                         HurryPushContract.LevelRuleEntry.TABLE_NAME,
+                        selection,
+                        selectionArgs
+                );
+                break;
+            }
+            case CODE_ACHIEVEMENT: {
+                numRowDeleted = hurryPushDbHelper.getWritableDatabase().delete(
+                        HurryPushContract.AchievementProgressEntry.TABLE_NAME,
                         selection,
                         selectionArgs
                 );

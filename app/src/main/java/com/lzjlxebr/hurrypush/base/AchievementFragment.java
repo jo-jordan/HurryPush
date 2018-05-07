@@ -1,14 +1,11 @@
 package com.lzjlxebr.hurrypush.base;
 
 
-
-import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -23,7 +20,6 @@ import android.widget.ProgressBar;
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.adapter.AchievementFragmentAdapter;
 import com.lzjlxebr.hurrypush.db.HurryPushContract;
-import com.lzjlxebr.hurrypush.service.HurryPushSyncUtils;
 
 public class AchievementFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
     private static final String LOG_TAG = AchievementFragment.class.getSimpleName();
@@ -35,16 +31,16 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
     private ProgressBar mLoadingIndicator;
 
     public static String[] ACHIEVEMNET_PROJECTION = {
-            HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_ID,
-            HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_NUMBER,
-            HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_EXP_SINGLE,
-            HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_EXP_TOTAL,
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_NAME,
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_DESCRIPTION,
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS,
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_CONDITION
     };
 
-    public static final int INDEX_COLUMN_LEVEL_ID = 0;
-    public static final int INDEX_COLUMN_LEVEL_NUMBER = 1;
-    public static final int INDEX_COLUMN_LEVEL_EXP_SINGLE = 2;
-    public static final int INDEX_COLUMN_LEVEL_EXP_TOTAL = 3;
+    public static final int INDEX_COLUMN_ACHI_NAME = 0;
+    public static final int INDEX_COLUMN_ACHI_DESCRIPTION = 1;
+    public static final int INDEX_COLUMN_ACHI_PROGRESS = 2;
+    public static final int INDEX_COLUMN_ACHI_CONDITION = 3;
 
     private static final int ACHIEVEMENT_LOADER_ID = 2000;
 
@@ -87,7 +83,7 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
         switch (id) {
             case ACHIEVEMENT_LOADER_ID: {
-                Uri achievementQueryUri = HurryPushContract.LevelRuleEntry.LEVEL_RULE_URI;
+                Uri achievementQueryUri = HurryPushContract.AchievementProgressEntry.ACHIEVEMENT_PROGRESS_URI;
 
                 return new CursorLoader(
                         (MainActivity) getActivity(),

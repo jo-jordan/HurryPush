@@ -8,20 +8,20 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class NetworkUtils {
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     private static final String FAKE_DATA_URL =
-            "https://raw.githubusercontent.com/lzjlxebr/hurrypush/master/fake_data";
+            "https://raw.githubusercontent.com/lzjlxebr/hurrypush-data/master/fake_data";
 
     private static final String FAKE_CLIENT_INFO_SUFFIX = "client_info.json";
 
     private static final String FAKE_LEVEL_RULE_SUFFIX = "level_rule.json";
 
     private static final String FAKE_DEFECATION_RECORD = "defecation_record.json";
+    private static final String FAKE_ACHIEVEMENT_PROGRESS = "achievement_progress.json";
 
 
     // build client_info url
@@ -94,6 +94,21 @@ public class NetworkUtils {
             return response;
         } finally {
             urlConnection.disconnect();
+        }
+    }
+
+    public static URL buildAchievementProgressUrl() {
+        Uri achievementProgressUri = Uri.parse(FAKE_DATA_URL).buildUpon()
+                .appendPath(FAKE_ACHIEVEMENT_PROGRESS)
+                .build();
+
+        try {
+            URL achievementProgressUrl = new URL(achievementProgressUri.toString());
+            Log.d(LOG_TAG,"defecationRecordUrl: " + achievementProgressUrl);
+            return achievementProgressUrl;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

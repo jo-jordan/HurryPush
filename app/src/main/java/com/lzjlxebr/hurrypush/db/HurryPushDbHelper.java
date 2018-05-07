@@ -59,6 +59,7 @@ public class HurryPushDbHelper extends SQLiteOpenHelper {
                         HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_REQUIRED_DAYS + " integer not null," +
                         HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_ID + " integer not null," +
                         HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_NAME + " text not null," +
+                        HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_DESCRIPTION + " text not null," +
                         HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_CONDITION + " integer not null," +
                         HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS + " integer not null," +
                         HurryPushContract.AchievementProgressEntry.COLUMN_UPDATE_TIME + " integer not null" +

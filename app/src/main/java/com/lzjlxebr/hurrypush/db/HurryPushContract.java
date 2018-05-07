@@ -70,5 +70,6 @@ public class HurryPushContract {
         public static final String COLUMN_ACHI_CONDITION = "achi_condition";
         public static final String COLUMN_ACHI_PROGRESS = "achi_progress";
         public static final String COLUMN_UPDATE_TIME = "update_time";
+        public static final String COLUMN_ACHI_DESCRIPTION = "achi_description";
     }
 }

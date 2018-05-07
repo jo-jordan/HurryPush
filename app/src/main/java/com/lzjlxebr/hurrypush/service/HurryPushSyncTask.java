@@ -108,4 +108,32 @@ public class HurryPushSyncTask {
         }
     }
 
+    synchronized public static void syncAchievementProgress(Context context) {
+        try {
+            // build client info url
+            URL requestUrl = NetworkUtils.buildAchievementProgressUrl();
+            // get response from http request
+            String jsonResponse = NetworkUtils.getResponseFromHttpUrl(requestUrl);
+            // build content values for content provider
+            ContentValues[] contentValues = HurryPushJsonUtils.getAchievementProgressContentValuesFromJson(context, jsonResponse);
+            // save data
+            if (contentValues != null && contentValues.length != 0) {
+                ContentResolver contentResolver = context.getContentResolver();
+
+                contentResolver.delete(
+                        HurryPushContract.AchievementProgressEntry.ACHIEVEMENT_PROGRESS_URI,
+                        null,
+                        null
+                );
+
+                contentResolver.bulkInsert(
+                        HurryPushContract.AchievementProgressEntry.ACHIEVEMENT_PROGRESS_URI,
+                        contentValues
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

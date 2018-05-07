@@ -1,14 +1,11 @@
 package com.lzjlxebr.hurrypush.base;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.Toolbar;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -30,15 +27,22 @@ public class StartFlyActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_start_fly);
 
-
-
         initView();
 
-        startTimerService();
+        initToolBar();
 
+        startTimerService();
     }
 
-    private void initView(){
+    public void initToolBar() {
+        Toolbar toolbar = findViewById(R.id.start_fly_toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void initView() {
         mContext = this;
         mFloatingActionButton = findViewById(R.id.stop_timer_fab);
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -51,13 +55,13 @@ public class StartFlyActivity extends AppCompatActivity {
         });
     }
 
-    private void startTimerService(){
+    private void startTimerService() {
         Intent startTimer = new Intent(this, TimerService.class);
         startService(startTimer);
     }
 
-    private void startSurvey(){
-        Intent start = new Intent(this,SurveyActivity.class);
+    private void startSurvey() {
+        Intent start = new Intent(this, SurveyActivity.class);
         startActivity(start);
     }
 

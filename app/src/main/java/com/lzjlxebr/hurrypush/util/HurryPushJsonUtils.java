@@ -2,7 +2,6 @@ package com.lzjlxebr.hurrypush.util;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.util.Log;
 
 import com.lzjlxebr.hurrypush.db.HurryPushContract;
 
@@ -45,6 +44,17 @@ public class HurryPushJsonUtils {
     private static final String LEVEL_RULE_LEVEL_NUMBER = "level_number";
     private static final String LEVEL_RULE_LEVEL_EXP_SINGLE = "level_exp_single";
     private static final String LEVEL_RULE_LEVEL_TOTAL = "level_total";
+    // achievement progress
+    private static final String ACHIEVEMENT_PROGRESS_ID = "_id";
+    private static final String ACHIEVEMENT_PROGRESS_ACHI_TYPE = "achi_type";
+    private static final String ACHIEVEMENT_PROGRESS_ACHI_REQUIRED_MINUTES = "achi_required_minutes";
+    private static final String ACHIEVEMENT_PROGRESS_ACHI_REQUIRED_DAYS= "achi_required_days";
+    private static final String ACHIEVEMENT_PROGRESS_ACHI_ID = "achi_id";
+    private static final String ACHIEVEMENT_PROGRESS_ACHI_NAME = "achi_name";
+    private static final String ACHIEVEMENT_PROGRESS_ACHI_CONDITION = "achi_condition";
+    private static final String ACHIEVEMENT_PROGRESS_ACHI_PROGRESS = "achi_progress";
+    private static final String ACHIEVEMENT_PROGRESS_UPDATE_TIME = "update_time";
+    private static final String ACHIEVEMENT_PROGRESS_ACHI_DESCRIPTION = "achi_description";
 
 
     public static ContentValues[] getClientInfoContentValuesFromJson(Context context, String jsonResponse) throws JSONException {
@@ -169,6 +179,54 @@ public class HurryPushJsonUtils {
             contentValue.put(HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_NUMBER, level_number);
             contentValue.put(HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_EXP_SINGLE, level_exp_single);
             contentValue.put(HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_EXP_TOTAL, level_total);
+
+            contentValues[i] = contentValue;
+        }
+
+
+        return contentValues;
+    }
+
+    public static ContentValues[] getAchievementProgressContentValuesFromJson(Context context, String jsonResponse) throws JSONException {
+        JSONObject achievementProgressJson = new JSONObject(jsonResponse);
+
+        JSONArray jsonArray = achievementProgressJson.getJSONArray(TABLE_COLUMNS);
+
+        ContentValues[] contentValues = new ContentValues[jsonArray.length()];
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            int achi_type;
+            int achi_required_minutes;
+            int achi_required_days;
+            int achi_id;
+            String achi_name;
+            int achi_condition;
+            int achi_progress;
+            String update_time;
+            String achi_description;
+
+            JSONObject column = jsonArray.getJSONObject(i);
+
+            achi_type = column.getInt(ACHIEVEMENT_PROGRESS_ACHI_TYPE);
+            achi_required_minutes = column.getInt(ACHIEVEMENT_PROGRESS_ACHI_REQUIRED_MINUTES);
+            achi_required_days = column.getInt(ACHIEVEMENT_PROGRESS_ACHI_REQUIRED_DAYS);
+            achi_id = column.getInt(ACHIEVEMENT_PROGRESS_ACHI_ID);
+            achi_name = column.getString(ACHIEVEMENT_PROGRESS_ACHI_NAME);
+            achi_condition = column.getInt(ACHIEVEMENT_PROGRESS_ACHI_CONDITION);
+            achi_progress = column.getInt(ACHIEVEMENT_PROGRESS_ACHI_PROGRESS);
+            update_time = column.getString(ACHIEVEMENT_PROGRESS_UPDATE_TIME);
+            achi_description = column.getString(ACHIEVEMENT_PROGRESS_ACHI_DESCRIPTION);
+
+            ContentValues contentValue = new ContentValues();
+            contentValue.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_TYPE, achi_type);
+            contentValue.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_REQUIRED_MINUTES, achi_required_minutes);
+            contentValue.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_REQUIRED_DAYS, achi_required_days);
+            contentValue.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_ID, achi_id);
+            contentValue.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_NAME, achi_name);
+            contentValue.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_CONDITION, achi_condition);
+            contentValue.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS, achi_progress);
+            contentValue.put(HurryPushContract.AchievementProgressEntry.COLUMN_UPDATE_TIME, DateFormatterUtils.normalizeDateFromString(update_time));
+            contentValue.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_DESCRIPTION, achi_description);
 
             contentValues[i] = contentValue;
         }

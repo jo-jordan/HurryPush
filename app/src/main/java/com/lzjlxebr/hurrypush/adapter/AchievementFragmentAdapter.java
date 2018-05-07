@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
@@ -31,15 +32,21 @@ public class AchievementFragmentAdapter extends RecyclerView.Adapter<Achievement
     public void onBindViewHolder(@NonNull AchievementFragmentViewHolder holder, int position) {
         mCursor.moveToPosition(position);
 
-        int level_id = mCursor.getInt(AchievementFragment.INDEX_COLUMN_LEVEL_ID);
-        int levelNumber = mCursor.getInt(AchievementFragment.INDEX_COLUMN_LEVEL_NUMBER);
-        int levelExpSingle = mCursor.getInt(AchievementFragment.INDEX_COLUMN_LEVEL_EXP_SINGLE);
-        int levelExpTotal = mCursor.getInt(AchievementFragment.INDEX_COLUMN_LEVEL_EXP_TOTAL);
+        String achi_name = mCursor.getString(AchievementFragment.INDEX_COLUMN_ACHI_NAME);
+        String achi_description = mCursor.getString(AchievementFragment.INDEX_COLUMN_ACHI_DESCRIPTION);
+        int achi_progress = mCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_PROGRESS);
+        int achi_condition = mCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_CONDITION);
 
-        holder.achievementTextView.setText("LEVEL_ID: " + level_id + "\n");
-        holder.achievementTextView.append("LEVEL NUMBER: " + levelNumber + "\n");
-        holder.achievementTextView.append("LEVEL EXP SINGLE: " + levelExpSingle + "\n");
-        holder.achievementTextView.append("LEVEL EXP TOTAL: " + levelExpTotal);
+        int molecular= Integer.parseInt(Integer.toBinaryString(achi_progress));
+        int denominator = Integer.parseInt(Integer.toBinaryString(achi_condition));
+
+        double rate = molecular/denominator;
+
+        holder.textViewAchiName.setText(achi_name);
+        holder.textViewAchiDescription.setText(achi_description);
+        holder.achiProgressBar.setMax(denominator);
+        holder.achiProgressBar.setProgress(molecular);
+        holder.textViewProgressRate.setText(String.valueOf(rate));
     }
 
     @Override
@@ -54,11 +61,16 @@ public class AchievementFragmentAdapter extends RecyclerView.Adapter<Achievement
     }
 
     class AchievementFragmentViewHolder extends RecyclerView.ViewHolder{
-        final TextView achievementTextView;
+        final ProgressBar achiProgressBar;
+        final TextView textViewAchiName,textViewAchiDescription,textViewProgressRate;
+
         AchievementFragmentViewHolder(View view){
             super(view);
+            textViewAchiName = view.findViewById(R.id.tv_achi_name);
+            textViewAchiDescription = view.findViewById(R.id.tv_avhi_description);
+            achiProgressBar = view.findViewById(R.id.achievement_progress_bar);
+            textViewProgressRate = view.findViewById(R.id.achi_progress_rate);
 
-            achievementTextView = (TextView) view.findViewById(R.id.achievement_tv);
 
         }
 

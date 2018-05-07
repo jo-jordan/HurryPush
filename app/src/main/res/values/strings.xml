@@ -39,6 +39,7 @@
 
     <!-- achievement -->
     <string name="achievement_load_error">Load error,go to fix bug.</string>
+    <string name="achievement_progress">完成度：</string>
 
     <!-- statistics -->
     <string name="statistics_load_error">Load error,go to fix bug.</string>
@@ -63,6 +64,9 @@
     <string name="timer_inner_notification_body_ten_mins">You fly over ten minutes</string>
     <string name="timer_inner_notification_body_thirty_mins">You fly over thirty minutes</string>
     <string name="timer_inner_notification_body_one_hour">You fly over one hour,timer will be stop now.</string>
+
+
+
 
 
 </resources>
