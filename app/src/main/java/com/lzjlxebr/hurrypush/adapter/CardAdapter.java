@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.base;
+package com.lzjlxebr.hurrypush.adapter;
 
 import android.support.v7.widget.CardView;
 
