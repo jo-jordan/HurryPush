@@ -12,7 +12,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         <activity
             android:name=".base.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +23,8 @@
         <activity
             android:name=".base.SettingsActivity"
             android:parentActivityName=".base.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name=".db.HurryPushProvider"
@@ -38,14 +40,16 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_start_fly"
             android:parentActivityName=".base.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".base.SurveyActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_start_fly"
             android:parentActivityName=".base.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
 
 
         <service
