@@ -54,5 +54,15 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
+    <!-- timer inner notification -->
+    <string name="done">DONE</string>
+    <string name="timer_inner_notification_title">Be Attention</string>
+    <string name="timer_inner_notification_body_three_mins">You fly over three minutes</string>
+    <string name="timer_inner_notification_body_five_mins">You fly over five minutes</string>
+    <string name="timer_inner_notification_body_seven_mins">You fly over seven minutes</string>
+    <string name="timer_inner_notification_body_ten_mins">You fly over ten minutes</string>
+    <string name="timer_inner_notification_body_thirty_mins">You fly over thirty minutes</string>
+    <string name="timer_inner_notification_body_one_hour">You fly over one hour,timer will be stop now.</string>
+
 
 </resources>
