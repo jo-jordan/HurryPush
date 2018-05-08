@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">HurryPush</string>
-    <!-- settings menu -->
-    <string name="menu_action_settings">Settings</string>
+    <string name="app_name">快翔</string>
+
     <!-- problem report menu -->
     <string name="menu_action_report">Problem Report</string>
 
@@ -11,23 +10,26 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="nav_drawer_item_settings">Settings</string>
+    <string name="nav_drawer_item_settings">设置</string>
 
     <!-- settings -->
     <!-- client info settings -->
-    <string name="client_nick_name_label">Change Nick Name</string>
+    <string name="menu_action_settings">Settings</string>
+    <string name="general_setting">一般设置</string>
+    <string name="client_nick_name_label">改名换姓</string>
     <string name="client_nick_name_key" translatable="false">nick_name</string>
-    <string name="client_nick_name_default_value" translatable="false">Click to type in a name</string>
+    <string name="client_nick_name_default_value" translatable="false">点这里换个称号</string>
     <!-- advanced settings-->
-    <string name="open_sync_service_label">Sync Data From Internet Now</string>
+    <string name="open_sync_service_label">点这里从网络同步数据</string>
     <string name="open_sync_service_key">open_sync_service</string>
+    <string name="advanced_setting">高级设置</string>
 
     <!-- client info display -->
-    <string name="client_current_level_label">Current Level.</string>
+    <string name="client_current_level_label">当前等级：</string>
     <string name="client_current_level_key" translatable="false">current_level</string>
     <string name="client_current_level_default_value" translatable="false">10</string>
 
-    <string name="client_current_exp_label">Exp.</string>
+    <string name="client_current_exp_label">经验值</string>
     <string name="client_current_exp_key" translatable="false">exp</string>
     <string name="client_current_exp_default_value" translatable="false">6666</string>
 
@@ -49,23 +51,22 @@
     <string name="channel_description">Just A Notification Channel</string>
 
     <!-- fab -->
-    <string name="floating_action_go_timer">Start flyyyyyyyyyyyyyyyyy.</string>
+    <string name="floating_action_go_timer">开始我的飞翔吧</string>
 
-    <string name="title_activity_start_fly">StartFlyActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_start_fly">你在飞翔哦</string>
+
+    <!-- survey -->
+    <string name="title_activity_start_survey">做个调查吧</string>
 
     <!-- timer inner notification -->
     <string name="done">DONE</string>
-    <string name="timer_inner_notification_title">Be Attention</string>
-    <string name="timer_inner_notification_body_three_mins">You fly over three minutes</string>
-    <string name="timer_inner_notification_body_five_mins">You fly over five minutes</string>
-    <string name="timer_inner_notification_body_seven_mins">You fly over seven minutes</string>
-    <string name="timer_inner_notification_body_ten_mins">You fly over ten minutes</string>
-    <string name="timer_inner_notification_body_thirty_mins">You fly over thirty minutes</string>
-    <string name="timer_inner_notification_body_one_hour">You fly over one hour,timer will be stop now.</string>
-
-
+    <string name="timer_inner_notification_title">请注意你的飞翔时间</string>
+    <string name="timer_inner_notification_body_three_mins">你飞翔超过3分钟了</string>
+    <string name="timer_inner_notification_body_five_mins">你飞翔超过5分钟了</string>
+    <string name="timer_inner_notification_body_seven_mins">你飞翔超过7分钟了</string>
+    <string name="timer_inner_notification_body_ten_mins">你飞翔超过10分钟了</string>
+    <string name="timer_inner_notification_body_thirty_mins">你飞翔超过半小时了</string>
+    <string name="timer_inner_notification_body_one_hour">你飞翔超过一个小时了，计时器已自动停止</string>
 
 
 

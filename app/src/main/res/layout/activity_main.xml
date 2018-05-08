@@ -53,28 +53,34 @@
             android:id="@+id/go_to_fly_fam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="bottom|end"
             android:layout_marginBottom="@dimen/fab_margin"
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginRight="@dimen/fab_margin"
-            app:menu_openDirection="up"
-            app:menu_showShadow="true"
             app:menu_backgroundColor="@android:color/transparent"
+            app:menu_colorNormal="@color/colorAccent"
+            app:menu_colorPressed="@color/colorPrimaryDark"
+            app:menu_colorRipple="@color/colorPrimary"
             app:menu_labels_colorNormal="@color/colorPrimary"
             app:menu_labels_colorPressed="@color/colorAccent"
             app:menu_labels_colorRipple="@color/colorPrimaryDark"
-            >
+            app:menu_openDirection="up"
+
+            app:menu_showShadow="true">
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/go_to_fly_fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_input_add"
+                app:fab_colorPressed="@color/colorPrimaryDark"
+                app:fab_colorRipple="@color/colorPrimary"
                 app:fab_label="@string/floating_action_go_timer"
-                app:fab_size="mini"/>
+                app:fab_size="mini"
+                app:fab_colorNormal="@color/colorAccent"/>
         </com.github.clans.fab.FloatingActionMenu>
 
     </RelativeLayout>

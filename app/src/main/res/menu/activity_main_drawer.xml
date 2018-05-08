@@ -10,16 +10,16 @@
             android:title="@string/nav_drawer_item_settings" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="其它">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="分享这个APP" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="发送好基友" />
         </menu>
     </item>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="General Setting">
+        android:title="@string/general_setting">
         <EditTextPreference
             android:defaultValue="@string/client_nick_name_default_value"
             android:icon="@drawable/ic_change_nick_name"
@@ -12,7 +12,7 @@
             android:visibility="visible" />
     </PreferenceCategory>
     <PreferenceCategory
-        android:title="Advanced Setting"
+        android:title="@string/advanced_setting"
         >
         <Preference
             android:icon="@drawable/ic_sync"

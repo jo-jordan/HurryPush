@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".base.StartFlyActivity">
 
     <android.support.v7.widget.Toolbar
@@ -45,8 +45,11 @@
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginStart="0dp"
-
         app:menu_backgroundColor="@android:color/transparent"
+        app:menu_colorNormal="@color/colorAccent"
+
+        app:menu_colorPressed="@color/colorPrimaryDark"
+        app:menu_colorRipple="@color/colorPrimary"
         app:menu_icon="@drawable/ic_stop"
         app:menu_labels_colorNormal="@color/colorPrimary"
         app:menu_labels_colorPressed="@color/colorAccent"
@@ -59,6 +62,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_done"
+            app:fab_colorNormal="@color/colorAccent"
+            app:fab_colorPressed="@color/colorPrimaryDark"
+            app:fab_colorRipple="@color/colorPrimary"
             app:fab_label="@string/floating_action_go_timer"
             app:fab_size="mini" />
 
