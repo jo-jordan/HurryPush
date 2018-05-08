@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.base.AchievementFragment;
+import com.lzjlxebr.hurrypush.util.NumbersUtils;
 
 public class AchievementFragmentAdapter extends RecyclerView.Adapter<AchievementFragmentAdapter.AchievementFragmentViewHolder> {
     private final Context mConetxt;
@@ -37,17 +38,18 @@ public class AchievementFragmentAdapter extends RecyclerView.Adapter<Achievement
         int achi_progress = mCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_PROGRESS);
         int achi_condition = mCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_CONDITION);
 
-        int molecular= Integer.parseInt(Integer.toBinaryString(achi_progress));
-        int denominator = Integer.parseInt(Integer.toBinaryString(achi_condition));
+        int molecular = NumbersUtils.convertBinaryStringToInt(Integer.toBinaryString(achi_progress));
+        int denominator = NumbersUtils.convertBinaryStringToInt(Integer.toBinaryString(achi_condition));
 
-        double rate = molecular/denominator;
+        String rate = molecular + "/" + denominator;
 
         holder.textViewAchiName.setText(achi_name);
         holder.textViewAchiDescription.setText(achi_description);
         holder.achiProgressBar.setMax(denominator);
         holder.achiProgressBar.setProgress(molecular);
-        holder.textViewProgressRate.setText(String.valueOf(rate));
+        holder.textViewProgressRate.setText(rate);
     }
+
 
     @Override
     public int getItemCount() {

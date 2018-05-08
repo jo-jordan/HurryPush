@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,6 +28,7 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
     private AchievementFragmentAdapter achievementFragmentAdapter;
     private RecyclerView mRecyclerView;
     private int mPosition = RecyclerView.NO_POSITION;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private ProgressBar mLoadingIndicator;
 
@@ -63,6 +65,8 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
         View view = inflater.inflate(R.layout.fragment_achievement,container,false);
         achievementFragmentAdapter = new AchievementFragmentAdapter((MainActivity) getActivity());
 
+        mSwipeRefreshLayout = view.findViewById(R.id.achi_swipe_refresh_vieww);
+
         mLoadingIndicator = view.findViewById(R.id.achievement_load_indicator);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.achievement_recycler_view);
         showLoding();
@@ -75,6 +79,13 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
         mRecyclerView.setAdapter(achievementFragmentAdapter);
 
         getLoaderManager().initLoader(ACHIEVEMENT_LOADER_ID,null,this);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+        });
         return view;
     }
 
