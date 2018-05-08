@@ -154,23 +154,38 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         two = mTabLayout.getTabAt(1);
         three = mTabLayout.getTabAt(2);
 
-        one.setIcon(R.mipmap.ic_launcher);
-        two.setIcon(R.mipmap.ic_launcher);
-        three.setIcon(R.mipmap.ic_launcher);
+
+        one.setIcon(R.drawable.ic_today);
+        two.setIcon(R.drawable.ic_thumb_head_unselected);
+        three.setIcon(R.drawable.ic_pie_chart_unselected);
 
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.equals(one)) {
+                    one.setIcon(R.drawable.ic_today);
+                    two.setIcon(R.drawable.ic_thumb_head_unselected);
+                    three.setIcon(R.drawable.ic_pie_chart_unselected);
                     mFloatingActionMenu.showMenuButton(true);
-                } else {
+                }
+                if (tab.equals(two)) {
+                    two.setIcon(R.drawable.ic_thumb_head);
+                    one.setIcon(R.drawable.ic_today_unselected);
+                    three.setIcon(R.drawable.ic_pie_chart_unselected);
+                    mFloatingActionMenu.hideMenuButton(true);
+                }
+                if (tab.equals(three)) {
+                    three.setIcon(R.drawable.ic_pie_chart);
+                    one.setIcon(R.drawable.ic_today_unselected);
+                    two.setIcon(R.drawable.ic_thumb_head_unselected);
                     mFloatingActionMenu.hideMenuButton(true);
                 }
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+
             }
 
             @Override
