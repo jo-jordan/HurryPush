@@ -6,13 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.lzjlxebr.hurrypush.base.AchievementFragment;
 import com.lzjlxebr.hurrypush.base.StatisticsFragment;
 import com.lzjlxebr.hurrypush.base.TodayFragment;
-import com.lzjlxebr.hurrypush.base.AchievementFragment;
 
 public class MainActivityAdapter extends FragmentPagerAdapter {
 
-    private String[] mTitles = new String[]{"Today","Achievement","Statistics"};
+    private String[] mTitles = new String[]{"今日","成就","统计"};
 
     public MainActivityAdapter(FragmentManager fragmentManager){
         super(fragmentManager);
