@@ -33,4 +33,5 @@ dependencies {
     // third part library
     implementation 'com.github.clans:fab:1.6.4'
     implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.haibin:calendarview:3.3.0'
 }
