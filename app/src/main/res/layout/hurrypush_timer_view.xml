@@ -1,50 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/hurry_push_timer_view"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:gravity="center"
     android:orientation="horizontal">
 
 
     <TextView
         android:id="@+id/tv_hour"
+        style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:text="12"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:text="00"
         android:textSize="@dimen/hour_text_size" />
 
     <TextView
         android:id="@+id/divider_hour_minute"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textAlignment="center"
-        android:text=":"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="bottom"
         android:textSize="@dimen/divider1_text_size" />
-
 
 
     <TextView
         android:id="@+id/tv_minute"
+        style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="10"
+        android:scaleY="1.3"
+        android:text="00"
         android:textSize="@dimen/minute_text_size" />
 
     <TextView
         android:id="@+id/divider_minute_second"
-        android:layout_width="8dp"
-        android:layout_height="match_parent"
-        android:textAlignment="center"
-        android:text=":"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:text=""
         android:textSize="@dimen/divider2_text_size" />
 
     <TextView
         android:id="@+id/tv_second"
+        style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="05"
+        android:scaleY="1.3"
+        android:text="00"
         android:textSize="@dimen/second_text_size" />
 
 
