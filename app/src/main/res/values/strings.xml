@@ -67,7 +67,4 @@
     <string name="timer_inner_notification_body_ten_mins">你飞翔超过10分钟了</string>
     <string name="timer_inner_notification_body_thirty_mins">你飞翔超过半小时了</string>
     <string name="timer_inner_notification_body_one_hour">你飞翔超过一个小时了，计时器已自动停止</string>
-
-
-
 </resources>
