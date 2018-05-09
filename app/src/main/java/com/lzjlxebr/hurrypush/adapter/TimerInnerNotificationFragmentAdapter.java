@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
@@ -26,13 +25,11 @@ public class TimerInnerNotificationFragmentAdapter extends
     static class TimerInnerNotificationFragmentAdapterViewHolder extends RecyclerView.ViewHolder{
         final TextView mTitle;
         final TextView mContent;
-        final Button mButton;
 
         TimerInnerNotificationFragmentAdapterViewHolder(View view) {
             super(view);
             mTitle = view.findViewById(R.id.tv_title_inner_notification);
             mContent = view.findViewById(R.id.tv_content_inner_notification);
-            mButton = view.findViewById(R.id.btn_done_inner_notification);
         }
     }
 
