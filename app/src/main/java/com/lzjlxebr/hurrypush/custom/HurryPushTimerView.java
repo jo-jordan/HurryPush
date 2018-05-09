@@ -98,6 +98,7 @@ public class HurryPushTimerView extends LinearLayout{
         changeSize(mDividerVertical2, mClockWidth, mTvColon2);
 
         View mViewDividerVertical1 = findViewById(R.id.divider_hour_minute);
+        View mViewDividerVertical2 = findViewById(R.id.divider_hour_minute);
 
 
         if (mDividerVertical1 != 0.0f) {
@@ -106,9 +107,9 @@ public class HurryPushTimerView extends LinearLayout{
             mViewDividerVertical1.setLayoutParams(params);
         }
         if (mDividerVertical2 != 0.0f) {
-            ViewGroup.LayoutParams params = mViewDividerVertical1.getLayoutParams();
+            ViewGroup.LayoutParams params = mViewDividerVertical2.getLayoutParams();
             params.height = (int) mDividerVertical2;
-            mViewDividerVertical1.setLayoutParams(params);
+            mViewDividerVertical2.setLayoutParams(params);
         }
     }
 
