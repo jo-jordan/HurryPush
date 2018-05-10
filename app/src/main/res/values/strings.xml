@@ -45,7 +45,7 @@
 
     <!-- statistics -->
     <string name="statistics_load_error">Load error,go to fix bug.</string>
-
+    <string name="defecation_desc_title">详细情况</string>
     <!-- notification -->
     <string name="channel_name">liuxi520</string>
     <string name="channel_description">Just A Notification Channel</string>
@@ -67,4 +67,23 @@
     <string name="timer_inner_notification_body_ten_mins">你飞翔超过10分钟了</string>
     <string name="timer_inner_notification_body_thirty_mins">你飞翔超过半小时了</string>
     <string name="timer_inner_notification_body_one_hour">你飞翔超过一个小时了，计时器已自动停止</string>
+
+    <string name="sunday">日</string>
+    <string name="monday">一</string>
+    <string name="tuesday">二</string>
+    <string name="wednesday">三</string>
+    <string name="thursday">四</string>
+    <string name="friday">五</string>
+    <string name="saturday">六</string>
+
+    <string-array name="week_string_array">
+        <item>日</item>
+        <item>一</item>
+        <item>二</item>
+        <item>三</item>
+        <item>四</item>
+        <item>五</item>
+        <item>六</item>
+    </string-array>
+
 </resources>
