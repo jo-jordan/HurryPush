@@ -8,17 +8,40 @@ import java.util.Locale;
 public class DateFormatterUtils {
 
     public static Long normalizeDateFromString(String dateStr) {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+        Date date = null;
         try {
-            Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.CHINA).parse(dateStr);
-            return date.getTime();
+            date = simpleDateFormat.parse(dateStr);
         } catch (ParseException e) {
             e.printStackTrace();
-            return null;
         }
+        long timeDiff = 8 * 60 * 60 * 1000;
+        long dateInLong = date.getTime();
+
+        return dateInLong - timeDiff;
     }
 
-    public static String getDateStringFromDateLong(Long dateLong) {
-        Date date = new Date(dateLong);
-        return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss",Locale.CHINA).format(date);
+
+    public static int getYearFromLong(long time) {
+
+        String date = SimpleDateFormat.getDateInstance(SimpleDateFormat.MONTH_FIELD, Locale.SIMPLIFIED_CHINESE).format(new Date(time));
+        String year = date.substring(0, date.indexOf("年"));
+
+        return Integer.parseInt(year);
+    }
+
+    public static int getMonthFromLong(long time) {
+        String date = SimpleDateFormat.getDateInstance(SimpleDateFormat.MONTH_FIELD, Locale.SIMPLIFIED_CHINESE).format(new Date(time));
+        String month = date.substring(date.indexOf("年") + 1, date.indexOf("月"));
+
+        return Integer.parseInt(month);
+    }
+
+    public static int getDayFromLong(long time) {
+        String date = SimpleDateFormat.getDateInstance(SimpleDateFormat.MONTH_FIELD, Locale.SIMPLIFIED_CHINESE).format(new Date(time));
+        String day = date.substring(date.indexOf("月") + 1, date.indexOf("日"));
+
+        return Integer.parseInt(day);
     }
 }
