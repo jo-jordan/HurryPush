@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.adapter.AchievementFragmentAdapter;
 import com.lzjlxebr.hurrypush.db.HurryPushContract;
+import com.lzjlxebr.hurrypush.service.HurryPushSyncUtils;
 
 public class AchievementFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
     private static final String LOG_TAG = AchievementFragment.class.getSimpleName();
@@ -61,14 +62,13 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         View view = inflater.inflate(R.layout.fragment_achievement,container,false);
-        achievementFragmentAdapter = new AchievementFragmentAdapter((MainActivity) getActivity());
+        achievementFragmentAdapter = new AchievementFragmentAdapter(getActivity());
 
         mSwipeRefreshLayout = view.findViewById(R.id.achi_swipe_refresh_vieww);
 
         mLoadingIndicator = view.findViewById(R.id.achievement_load_indicator);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.achievement_recycler_view);
+        mRecyclerView = view.findViewById(R.id.achievement_recycler_view);
         showLoding();
 
         LinearLayoutManager layoutManager =
@@ -83,7 +83,8 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                HurryPushSyncUtils.startImmediateSync(getActivity());
+                mSwipeRefreshLayout.stopNestedScroll();
             }
         });
         return view;
@@ -97,7 +98,7 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
                 Uri achievementQueryUri = HurryPushContract.AchievementProgressEntry.ACHIEVEMENT_PROGRESS_URI;
 
                 return new CursorLoader(
-                        (MainActivity) getActivity(),
+                        getActivity(),
                         achievementQueryUri,
                         ACHIEVEMNET_PROJECTION,
                         null,
@@ -113,7 +114,7 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
     @Override
     public void onLoadFinished(@NonNull android.support.v4.content.Loader<Cursor> loader, Cursor data) {
         achievementFragmentAdapter.swapCursor(data);
-        if (mRecyclerView.NO_POSITION == mPosition) mPosition = 0;
+        if (RecyclerView.NO_POSITION == mPosition) mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
         if (data.getCount() != 0) showAchievementDataView();
     }
