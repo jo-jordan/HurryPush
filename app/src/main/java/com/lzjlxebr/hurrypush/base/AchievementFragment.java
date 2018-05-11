@@ -17,21 +17,42 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.adapter.AchievementFragmentAdapter;
 import com.lzjlxebr.hurrypush.db.HurryPushContract;
+import com.lzjlxebr.hurrypush.entity.NetSyncTaskComplete;
 import com.lzjlxebr.hurrypush.service.HurryPushSyncUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AchievementFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
     private static final String LOG_TAG = AchievementFragment.class.getSimpleName();
 
     private AchievementFragmentAdapter achievementFragmentAdapter;
-    private RecyclerView mRecyclerView;
     private int mPosition = RecyclerView.NO_POSITION;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private ProgressBar mLoadingIndicator;
+    @BindView(R.id.achievement_recycler_view)
+    RecyclerView mRecyclerView;
+
+    @BindView(R.id.achi_swipe_refresh_vieww)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
+    @BindView(R.id.achievement_load_indicator)
+    ProgressBar mLoadingIndicator;
+
+    @BindView(R.id.achievement_load_error_msg)
+    TextView mTvErrorMsg;
+
+    @BindString(R.string.load_error_msg)
+    String loadErrorMsg;
 
     public static String[] ACHIEVEMNET_PROJECTION = {
             HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_NAME,
@@ -61,15 +82,14 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
 
         View view = inflater.inflate(R.layout.fragment_achievement,container,false);
         achievementFragmentAdapter = new AchievementFragmentAdapter(getActivity());
 
-        mSwipeRefreshLayout = view.findViewById(R.id.achi_swipe_refresh_vieww);
+        ButterKnife.bind(this, view);
 
-        mLoadingIndicator = view.findViewById(R.id.achievement_load_indicator);
-        mRecyclerView = view.findViewById(R.id.achievement_recycler_view);
-        showLoding();
+        showLoading();
 
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -83,11 +103,14 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                HurryPushSyncUtils.startImmediateSync(getActivity());
-                mSwipeRefreshLayout.stopNestedScroll();
+                startMySyncWork();
             }
         });
         return view;
+    }
+
+    private void startMySyncWork() {
+        HurryPushSyncUtils.startImmediateSync(getActivity());
     }
 
     @NonNull
@@ -117,6 +140,7 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
         if (RecyclerView.NO_POSITION == mPosition) mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
         if (data.getCount() != 0) showAchievementDataView();
+        else showErrorMsg();
     }
 
     @Override
@@ -124,13 +148,33 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
         achievementFragmentAdapter.swapCursor(null);
     }
 
-    void showLoding(){
-        mRecyclerView.setVisibility(View.INVISIBLE);
-        mLoadingIndicator.setVisibility(View.VISIBLE);
+    void showAchievementDataView(){
+        mLoadingIndicator.setVisibility(View.INVISIBLE);
+        mTvErrorMsg.setVisibility(View.INVISIBLE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
-    void showAchievementDataView(){
-        mRecyclerView.setVisibility(View.VISIBLE);
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void receiveNetSyncEvent(NetSyncTaskComplete event) {
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void showErrorMsg() {
+        mTvErrorMsg.setText(loadErrorMsg);
         mLoadingIndicator.setVisibility(View.INVISIBLE);
+        mTvErrorMsg.setVisibility(View.VISIBLE);
+    }
+
+
+    public void showLoading() {
+        mLoadingIndicator.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.INVISIBLE);
+        mTvErrorMsg.setVisibility(View.INVISIBLE);
     }
 }

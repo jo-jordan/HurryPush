@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -18,20 +17,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.adapter.TodayFragmentAdapter;
 import com.lzjlxebr.hurrypush.db.HurryPushContract;
 
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class TodayFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final String LOG_TAG = TodayFragment.class.getSimpleName();
 
     private TodayFragmentAdapter todayFragmentAdapter;
-    private RecyclerView mRecyclerView;
     private int mPosition = RecyclerView.NO_POSITION;
 
+    @BindView(R.id.today_recycler_view)
+    RecyclerView mRecyclerView;
 
-    private ProgressBar mLoadingIndicator;
+
+    @BindView(R.id.today_load_error_msg)
+    TextView mTvErrorMsg;
+
+    @BindView(R.id.today_load_indicator)
+    ProgressBar mLoadingIndicator;
+
+    @BindString(R.string.load_error_msg)
+    String loadErrorMsg;
 
     public static String[] TODAY_PROJECTION = {
             HurryPushContract.ClientInfoEntry.COLUMN_APP_ID,
@@ -49,28 +62,16 @@ public class TodayFragment extends Fragment implements LoaderManager.LoaderCallb
 
     private static final int TODAY_LOADER_ID = 1000;
 
-
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
-
-        //HurryPushSyncUtils.startImmediateSync((MainActivity)getActivity());
-        Log.d(LOG_TAG, "MainActivity was created.");
-
-        super.onActivityCreated(savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_today, container, false);
-        todayFragmentAdapter = new TodayFragmentAdapter((MainActivity)getActivity());
+        todayFragmentAdapter = new TodayFragmentAdapter(getActivity());
 
-        mLoadingIndicator = view.findViewById(R.id.today_load_indicator);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.today_recycler_view);
+        ButterKnife.bind(this, view);
+
+
         showLoading();
 
         LinearLayoutManager layoutManager =
@@ -95,7 +96,7 @@ public class TodayFragment extends Fragment implements LoaderManager.LoaderCallb
                 Uri todayQueryUri = HurryPushContract.ClientInfoEntry.CLIENT_INFO_URI;
 
                 return new CursorLoader(
-                        (MainActivity) getActivity(),
+                        getActivity(),
                         todayQueryUri,
                         TODAY_PROJECTION,
                         null,
@@ -114,7 +115,14 @@ public class TodayFragment extends Fragment implements LoaderManager.LoaderCallb
         if (mPosition == RecyclerView.NO_POSITION) mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
         if (data.getCount() != 0) showTodayDataView();
+        else showErrorMsg();
 
+    }
+
+    private void showErrorMsg() {
+        mTvErrorMsg.setText(loadErrorMsg);
+        mLoadingIndicator.setVisibility(View.INVISIBLE);
+        mTvErrorMsg.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -124,11 +132,13 @@ public class TodayFragment extends Fragment implements LoaderManager.LoaderCallb
 
     public void showTodayDataView() {
         mLoadingIndicator.setVisibility(View.INVISIBLE);
+        mTvErrorMsg.setVisibility(View.INVISIBLE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     public void showLoading() {
         mLoadingIndicator.setVisibility(View.VISIBLE);
         mRecyclerView.setVisibility(View.INVISIBLE);
+        mTvErrorMsg.setVisibility(View.INVISIBLE);
     }
 }
