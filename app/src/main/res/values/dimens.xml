@@ -26,6 +26,7 @@
 
     <!-- survey card view-->
     <dimen name="card_padding">15dp</dimen>
+    <dimen name="card_padding_right_left">60dp</dimen>
     <dimen name="card_text_margin_top">36dp</dimen>
 
     <!-- timer_inner_notification_card -->
