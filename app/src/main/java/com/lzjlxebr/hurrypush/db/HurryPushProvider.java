@@ -177,7 +177,7 @@ public class HurryPushProvider extends ContentProvider {
                 );
                 if (numRowInserted > 0) {
                     getContext().getContentResolver().notifyChange(uri, null);
-                    return uri.buildUpon().appendQueryParameter("insertedId",numRowInserted+"").build();
+                    return uri.buildUpon().appendQueryParameter("insertedId", numRowInserted + "").build();
                 } else {
                     return null;
                 }
@@ -304,8 +304,8 @@ public class HurryPushProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
         int numRowDeleted;
-        Log.d(LOG_TAG,"match uri: " + uri.toString());
-        Log.d(LOG_TAG,"match code: " + uriMatcher.match(uri));
+        Log.d(LOG_TAG, "match uri: " + uri.toString());
+        Log.d(LOG_TAG, "match code: " + uriMatcher.match(uri));
         switch (uriMatcher.match(uri)) {
             case CODE_CLIENT_INFO_ONLY_ONE: {
                 numRowDeleted = hurryPushDbHelper.getWritableDatabase().delete(
@@ -355,6 +355,14 @@ public class HurryPushProvider extends ContentProvider {
             case CODE_CLIENT_INFO_ONLY_ONE:
                 numRowUpdated = hurryPushDbHelper.getWritableDatabase().update(
                         HurryPushContract.ClientInfoEntry.TABLE_NAME,
+                        values,
+                        selection,
+                        selectionArgs
+                );
+                break;
+            case CODE_DEFECATION_RECORD:
+                numRowUpdated = hurryPushDbHelper.getWritableDatabase().update(
+                        HurryPushContract.DefecationRecordEntry.TABLE_NAME,
                         values,
                         selection,
                         selectionArgs
