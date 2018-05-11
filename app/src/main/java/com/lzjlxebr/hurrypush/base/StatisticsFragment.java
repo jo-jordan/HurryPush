@@ -57,6 +57,7 @@ public class StatisticsFragment extends Fragment implements CalendarView.OnDateS
     CalendarView mCalendarView;
     TextView mCurrentDate, mTvDefecationDesc;
     Calendar mCalendar;
+    List<Calendar> schemes;
     private Cursor mCursor;
 
 
@@ -98,7 +99,7 @@ public class StatisticsFragment extends Fragment implements CalendarView.OnDateS
 
     private void initData() {
         mCalendar = mCalendarView.getSelectedCalendar();
-        List<Calendar> schemes = new ArrayList<>();
+        schemes = new ArrayList<>();
 
         int count = mCursor.getCount();
         int itemCount = mCursor.getColumnCount();
@@ -125,8 +126,11 @@ public class StatisticsFragment extends Fragment implements CalendarView.OnDateS
                     gain_exp + "，闻起来：" + smell + "，通畅度：" + constipation + "，黏稠度：" +
                     stickiness + "，综合评分：" + overall_rating + "。上传服务器状态：" + server_call_back;
 
+
             schemes.add(getSchemeCalendar(year, month, day, 0xff3e3e3e, text));
         }
+
+
         mCalendarView.setSchemeDate(schemes);
     }
 
@@ -158,13 +162,53 @@ public class StatisticsFragment extends Fragment implements CalendarView.OnDateS
         String indicator_text = year + "年" + month + "月" + day + "日";
         mCurrentDate.setText(indicator_text);
 
-        String text = calendar.getScheme();
+        int count = 0;
 
-        if (text == null || "".equals(text)) {
-            text = "当前所选日期暂无详情查看。";
+        String text = "";
+        if (schemes != null) {
+            for (int i = 0; i < schemes.size(); i++) {
+                Calendar schemeCalendar = schemes.get(i);
+                int yearInScheme = schemeCalendar.getYear();
+                int monthInScheme = schemeCalendar.getMonth();
+                int dayInScheme = schemeCalendar.getDay();
+
+
+                if (year == yearInScheme) {
+                    if (month == monthInScheme) {
+                        if (day == dayInScheme) {
+                            if (count == 0) {
+                                text = schemeCalendar.getScheme();
+                                mTvDefecationDesc.setText(text + "\n");
+                                ++count;
+                            } else {
+                                text = schemeCalendar.getScheme();
+                                mTvDefecationDesc.append(text + "\n");
+                                ++count;
+                            }
+                        } else {
+                            if (text == null || "".equals(text)) {
+                                text = "当前所选日期暂无详情查看。\n";
+                                mTvDefecationDesc.setText(text);
+                            }
+                        }
+                    } else {
+                        if (text == null || "".equals(text)) {
+                            text = "当前所选日期暂无详情查看。\n";
+                            mTvDefecationDesc.setText(text);
+                        }
+                    }
+                } else {
+                    if (text == null || "".equals(text)) {
+                        text = "当前所选日期暂无详情查看。\n";
+                        mTvDefecationDesc.setText(text);
+                    }
+
+                }
+            }
+        } else {
+            text = "当前所选日期暂无详情查看。" + "\n";
+            mTvDefecationDesc.setText(text);
         }
-
-        mTvDefecationDesc.setText(text);
     }
 
 
