@@ -12,8 +12,6 @@ import com.lzjlxebr.hurrypush.entity.DefecationEvent;
 import com.lzjlxebr.hurrypush.entity.TimeUpdateEvent;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Calendar;
 import java.util.Timer;
@@ -51,7 +49,7 @@ public class TimerService extends Service {
     }
 
     private void sendEvent() {
-        Log.d(LOG_TAG,"hour: " + mHour + ", min: " + mMin + " ,sec: " + mSec);
+        Log.d(LOG_TAG, "hour: " + mHour + ", min: " + mMin + " ,sec: " + mSec);
         EventBus.getDefault().post(new TimeUpdateEvent(
                 mHour,
                 mMin,
@@ -80,12 +78,9 @@ public class TimerService extends Service {
         Calendar calendar = Calendar.getInstance();
         mStartTimeInMillis = calendar.getTimeInMillis();
 
-
         mHour = "00";
         mMin = "00";
         mSec = "-1";
-
-
     }
 
     private void stopTimer() {
@@ -100,19 +95,13 @@ public class TimerService extends Service {
     }
 
     private void updateTime() {
-
-
         int hours = 0;
         int minutes = 0;
         int seconds = -1;
 
-        //if ("00".equals(mSec))
-            seconds = Integer.parseInt(mSec);
-        //if ("00".equals(mMin))
-            minutes = Integer.parseInt(mMin);
-        //if ("00".equals(mHour))
-            hours = Integer.parseInt(mHour);
-
+        seconds = Integer.parseInt(mSec);
+        minutes = Integer.parseInt(mMin);
+        hours = Integer.parseInt(mHour);
 
         if (seconds < 9) {
             mSec = "0" + (seconds + 1);
@@ -138,7 +127,7 @@ public class TimerService extends Service {
                 mMin = "00";
                 minutes = 0;
                 mHour = "01";
-                if("01".equals(mHour)){
+                if ("01".equals(mHour)) {
                     stopTimer();
                     stopSelf();
                 }
@@ -148,22 +137,22 @@ public class TimerService extends Service {
         }
     }
 
-    public void saveUncompletedDataToDatabase(){
+    public void saveUncompletedDataToDatabase() {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_INSERT_TIME,Calendar.getInstance().getTimeInMillis());
-        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_START_TIME,mStartTimeInMillis);
-        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_END_TIME,mEndTimeInMillis);
-        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_CONSTIPATION,0);
-        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_STICKINESS,0);
-        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_SMELL,0);
-        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_GAIN_EXP,0.0);
-        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_OVERALL_RATING,0.0);
-        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_SERVER_CALL_BACK,0);
-        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_IS_USER_FINISH,0);
-        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_UPLOAD_TO_SERVER,0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_INSERT_TIME, Calendar.getInstance().getTimeInMillis());
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_START_TIME, mStartTimeInMillis);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_END_TIME, mEndTimeInMillis);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_CONSTIPATION, 0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_STICKINESS, 0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_SMELL, 0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_GAIN_EXP, 0.0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_OVERALL_RATING, 0.0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_SERVER_CALL_BACK, 0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_IS_USER_FINISH, 0);
+        contentValues.put(HurryPushContract.DefecationRecordEntry.COLUMN_UPLOAD_TO_SERVER, 0);
 
         Uri insertUri = HurryPushContract.DefecationRecordEntry.DEFECATION_RECORD_URI;
-        Uri insertedUri = getContentResolver().insert(insertUri,contentValues);
+        Uri insertedUri = getContentResolver().insert(insertUri, contentValues);
         insertedId = Long.parseLong(insertedUri.getQueryParameter("insertedId"));
 
         sendDefecationEvent();
@@ -176,7 +165,7 @@ public class TimerService extends Service {
         saveUncompletedDataToDatabase();
     }
 
-    private void sendDefecationEvent(){
-        EventBus.getDefault().postSticky(new DefecationEvent(mStartTimeInMillis,mEndTimeInMillis,insertedId));
+    private void sendDefecationEvent() {
+        EventBus.getDefault().postSticky(new DefecationEvent(mStartTimeInMillis, mEndTimeInMillis, insertedId));
     }
 }
