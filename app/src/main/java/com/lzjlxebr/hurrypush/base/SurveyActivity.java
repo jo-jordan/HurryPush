@@ -13,31 +13,35 @@ import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.adapter.SurveyCardFragmentAdapter;
 import com.lzjlxebr.hurrypush.entity.DefecationEvent;
 import com.lzjlxebr.hurrypush.entity.EmptyEvent;
+import com.lzjlxebr.hurrypush.entity.SurveyEntry;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.ButterKnife;
+
 public class SurveyActivity extends AppCompatActivity {
     private static final String LOG_TAG = SurveyActivity.class.getSimpleName();
 
-
-    private long startTime;
-    private long endTime;
-    private long id;
-
-    private SurveyCardFragmentAdapter mSurveyCardFragmentAdapter;
+    public SurveyCardFragmentAdapter mSurveyCardFragmentAdapter;
+    private SurveyEntry mSurveyEntry;
+    private DefecationEvent mDefecationEvent;
     private ShadowTransformer mShadowTransformer;
     private ViewPager mViewPager;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
 
+        ButterKnife.bind(this);
+
         initToolBar();
         initVariables();
+
         mViewPager.setAdapter(mSurveyCardFragmentAdapter);
-        mViewPager.setPageTransformer(false,mShadowTransformer);
+        mViewPager.setPageTransformer(false, mShadowTransformer);
         setScaleable();
 
         EventBus.getDefault().register(this);
@@ -52,26 +56,17 @@ public class SurveyActivity extends AppCompatActivity {
         actionbar.setDisplayHomeAsUpEnabled(true);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEventMainThread(EmptyEvent event) {
-        Log.d(LOG_TAG,LOG_TAG+"get event: "+event.getClass().getName());
 
         if (event == null) {
-            Log.d(LOG_TAG,"event is null.");
+            Log.d(LOG_TAG, "event is null.");
             return;
         }
         if (event instanceof DefecationEvent) {
-            startTime = ((DefecationEvent) event).getStartTime();
-            endTime = ((DefecationEvent) event).getEndTime();
-            id = ((DefecationEvent) event).getId();
+            mDefecationEvent = (DefecationEvent) event;
 
             EventBus.getDefault().removeStickyEvent(event);
-
-
-            Log.d(LOG_TAG,"start_time: " + startTime);
-            Log.d(LOG_TAG,"end_time: " + endTime);
-            Log.d(LOG_TAG,"id: " + id);
-
         }
     }
 
@@ -81,18 +76,30 @@ public class SurveyActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
     }
 
-    private void initVariables(){
-        mSurveyCardFragmentAdapter = new SurveyCardFragmentAdapter(getSupportFragmentManager(),dpToPiexls(2,this));
+    private void initVariables() {
+        mSurveyCardFragmentAdapter = new SurveyCardFragmentAdapter(getSupportFragmentManager(), dpToPixels(2, this));
+
         mViewPager = findViewById(R.id.survey_view_pager);
-        mShadowTransformer = new ShadowTransformer(mViewPager,mSurveyCardFragmentAdapter);
+        mShadowTransformer = new ShadowTransformer(mViewPager, mSurveyCardFragmentAdapter);
     }
 
-    private float dpToPiexls(int dp, Context context) {
+    private float dpToPixels(int dp, Context context) {
         return dp * (context.getResources().getDisplayMetrics().density);
     }
 
-    private void setScaleable(){
+    private void setScaleable() {
         mShadowTransformer.enableScaling();
 
+    }
+
+    public SurveyEntry getSurveyEntry() {
+        if (mSurveyEntry != null)
+            return mSurveyEntry;
+        else
+            return new SurveyEntry(0, 0, 0);
+    }
+
+    public DefecationEvent getDefecationEvent() {
+        return mDefecationEvent;
     }
 }
