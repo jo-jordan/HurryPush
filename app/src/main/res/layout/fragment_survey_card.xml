@@ -23,6 +23,7 @@
                 android:id="@+id/tv_card_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="第一步" />
 
             <TextView
@@ -30,6 +31,7 @@
                 android:id="@+id/tv_card_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/card_text_margin_top"
                 android:text="hhe hellWhat the hellWhat the hellWhat the hellWhat the hellWhat the hellWhat the hell" />
 
@@ -41,7 +43,7 @@
                 <Button
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:id="@+id/button_good"
-                    android:layout_width="80dp"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_text_margin_top"
                     android:text="很不错" />
@@ -49,7 +51,7 @@
                 <Button
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:id="@+id/button_ok"
-                    android:layout_width="60dp"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_text_margin_top"
                     android:text="还行" />
@@ -57,13 +59,11 @@
                 <Button
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:id="@+id/button_bad"
-                    android:layout_width="70dp"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_text_margin_top"
                     android:text="不太好" />
             </LinearLayout>
-
-
         </LinearLayout>
 
         <ImageView

@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.lzjlxebr.hurrypush.base.MainActivity">
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/achi_card_magin_small"
+    android:layout_marginLeft="@dimen/achi_card_magin_small"
+    android:layout_marginRight="@dimen/achi_card_magin_small"
+    android:layout_marginStart="@dimen/achi_card_magin_small"
+    android:layout_marginTop="@dimen/achi_card_magin_small"
+    app:cardUseCompatPadding="true">
 
-    <ProgressBar
-        android:id="@+id/today_load_indicator"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_centerInParent="true"
-        android:theme="@style/PreferenceThemeOverlay.v14.Material"
-        android:visibility="visible" />
+        android:layout_height="match_parent"
+        tools:context="com.lzjlxebr.hurrypush.base.MainActivity">
 
-    <TextView
-        android:id="@+id/today_load_error_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/today_load_error"
-        android:visibility="invisible" />
+        <ProgressBar
+            android:id="@+id/today_load_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:theme="@style/PreferenceThemeOverlay.v14.Material"
+            android:visibility="visible" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/today_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"/>
+        <TextView
+            android:id="@+id/today_load_error_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/today_load_error"
+            android:visibility="invisible" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/today_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
 
 
-
-
-</RelativeLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

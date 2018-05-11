@@ -38,6 +38,7 @@
 
     <!-- today -->
     <string name="today_load_error">Load error,go to fix bug.</string>
+    <string name="load_error_msg">载入完成，但似乎没有数据</string>
 
     <!-- achievement -->
     <string name="achievement_load_error">Load error,go to fix bug.</string>
