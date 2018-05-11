@@ -34,4 +34,9 @@ public class SurveyEntry {
     public void setStickiness(int stickiness) {
         this.stickiness = stickiness;
     }
+
+    @Override
+    public String toString() {
+        return "smell: " + smell + ", constipation: " + constipation + ", stickiness: " + stickiness;
+    }
 }
