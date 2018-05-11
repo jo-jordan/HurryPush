@@ -372,7 +372,7 @@ public class HurryPushProvider extends ContentProvider {
                 throw new UnsupportedOperationException("This uri is not supported to update: " + uri);
         }
         if (numRowUpdated != 0) {
-
+            getContext().getContentResolver().notifyChange(uri, null);
         }
         return 0;
     }
