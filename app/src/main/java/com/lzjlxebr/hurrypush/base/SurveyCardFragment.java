@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.adapter.CardAdapter;
 import com.lzjlxebr.hurrypush.adapter.SurveyCardAbstractFragment;
+import com.lzjlxebr.hurrypush.entity.SurveyEntry;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -65,17 +67,28 @@ public class SurveyCardFragment extends SurveyCardAbstractFragment {
         }
     }
 
+    private SurveyEntry mSurveyEntry;
+
 
     public void setSmell(int smell) {
-        ((SurveyActivity) getActivity()).getSurveyEntry().setSmell(smell);
+        SurveyActivity activity = ((SurveyActivity) getActivity());
+        activity.setSmell(smell);
+
+        //((SurveyActivity) getActivity()).getSurveyEntry().setSmell(smell);
     }
 
     public void setConstipation(int constipation) {
-        ((SurveyActivity) getActivity()).getSurveyEntry().setConstipation(constipation);
+        SurveyActivity activity = ((SurveyActivity) getActivity());
+        activity.setConstipation(constipation);
+
+        //((SurveyActivity) getActivity()).getSurveyEntry().setConstipation(constipation);
     }
 
     public void setStickiness(int stickiness) {
-        ((SurveyActivity) getActivity()).getSurveyEntry().setStickiness(stickiness);
+        SurveyActivity activity = ((SurveyActivity) getActivity());
+        activity.setStickiness(stickiness);
+
+        //((SurveyActivity) getActivity()).getSurveyEntry().setStickiness(stickiness);
     }
 
     @Override
@@ -106,6 +119,9 @@ public class SurveyCardFragment extends SurveyCardAbstractFragment {
         if ("crad_fragment_2".equals(tag)) {
             setStickiness(GOOD);
         }
+        String msg = ((SurveyActivity) getActivity()).getSurveyEntry().toString();
+        Log.d("SurveyCard", msg);
+        mTick.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.button_ok)
@@ -120,6 +136,9 @@ public class SurveyCardFragment extends SurveyCardAbstractFragment {
         if ("crad_fragment_2".equals(tag)) {
             setStickiness(OK);
         }
+        String msg = ((SurveyActivity) getActivity()).getSurveyEntry().toString();
+        Log.d("SurveyCard", msg);
+        mTick.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.button_bad)
@@ -134,5 +153,8 @@ public class SurveyCardFragment extends SurveyCardAbstractFragment {
         if ("crad_fragment_2".equals(tag)) {
             setStickiness(BAD);
         }
+        String msg = ((SurveyActivity) getActivity()).getSurveyEntry().toString();
+        Log.d("SurveyCard", msg);
+        mTick.setVisibility(View.VISIBLE);
     }
 }

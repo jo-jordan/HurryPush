@@ -25,7 +25,7 @@ public class SurveyActivity extends AppCompatActivity {
     private static final String LOG_TAG = SurveyActivity.class.getSimpleName();
 
     public SurveyCardFragmentAdapter mSurveyCardFragmentAdapter;
-    private SurveyEntry mSurveyEntry;
+    public SurveyEntry mSurveyEntry = new SurveyEntry(0, 0, 0);
     private DefecationEvent mDefecationEvent;
     private ShadowTransformer mShadowTransformer;
     private ViewPager mViewPager;
@@ -97,6 +97,22 @@ public class SurveyActivity extends AppCompatActivity {
             return mSurveyEntry;
         else
             return new SurveyEntry(0, 0, 0);
+    }
+
+    public void setSurveyEntry(SurveyEntry surveyEntry) {
+        this.mSurveyEntry = surveyEntry;
+    }
+
+    public void setSmell(int smell) {
+        mSurveyEntry.setSmell(smell);
+    }
+
+    public void setConstipation(int constipation) {
+        mSurveyEntry.setConstipation(constipation);
+    }
+
+    public void setStickiness(int stickiness) {
+        mSurveyEntry.setStickiness(stickiness);
     }
 
     public DefecationEvent getDefecationEvent() {
