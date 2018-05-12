@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.custom;
+package com.lzjlxebr.hurrypush.ui.custom;
 
 import android.annotation.TargetApi;
 import android.content.Context;

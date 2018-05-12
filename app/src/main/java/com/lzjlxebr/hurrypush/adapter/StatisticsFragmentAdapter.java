@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
-import com.lzjlxebr.hurrypush.base.TodayFragment;
+import com.lzjlxebr.hurrypush.ui.base.TodayFragment;
 
 public class StatisticsFragmentAdapter extends RecyclerView.Adapter<StatisticsFragmentAdapter.StatisticsAdapterViewHolder> {
     private final Context mConetxt;
@@ -63,7 +63,7 @@ public class StatisticsFragmentAdapter extends RecyclerView.Adapter<StatisticsFr
         StatisticsAdapterViewHolder(View view){
             super(view);
 
-            statisticsTextView = (TextView) view.findViewById(R.id.today_tv);
+            statisticsTextView = view.findViewById(R.id.today_tv);
         }
     }
 }

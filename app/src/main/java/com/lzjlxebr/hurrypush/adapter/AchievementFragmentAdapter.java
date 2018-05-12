@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
-import com.lzjlxebr.hurrypush.base.AchievementFragment;
+import com.lzjlxebr.hurrypush.ui.base.AchievementFragment;
 import com.lzjlxebr.hurrypush.util.NumbersUtils;
 
 public class AchievementFragmentAdapter extends RecyclerView.Adapter<AchievementFragmentAdapter.AchievementFragmentViewHolder> {

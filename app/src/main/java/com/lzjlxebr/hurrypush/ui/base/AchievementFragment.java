@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.base;
+package com.lzjlxebr.hurrypush.ui.base;
 
 
 import android.database.Cursor;
@@ -170,7 +170,6 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
         mLoadingIndicator.setVisibility(View.INVISIBLE);
         mTvErrorMsg.setVisibility(View.VISIBLE);
     }
-
 
     public void showLoading() {
         mLoadingIndicator.setVisibility(View.VISIBLE);

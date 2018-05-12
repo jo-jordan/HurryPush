@@ -7,8 +7,9 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.widget.CardView;
 import android.view.ViewGroup;
 
-import com.lzjlxebr.hurrypush.base.SurveyCardFragment;
-import com.lzjlxebr.hurrypush.base.SurveyFinalCardFragment;
+import com.lzjlxebr.hurrypush.ui.base.SurveyCardAbstractFragment;
+import com.lzjlxebr.hurrypush.ui.base.SurveyCardFragment;
+import com.lzjlxebr.hurrypush.ui.base.SurveyFinalCardFragment;
 
 import java.util.ArrayList;
 import java.util.List;

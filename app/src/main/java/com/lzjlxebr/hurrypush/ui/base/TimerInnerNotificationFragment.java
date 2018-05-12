@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.base;
+package com.lzjlxebr.hurrypush.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

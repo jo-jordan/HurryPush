@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.adapter;
+package com.lzjlxebr.hurrypush.ui.base;
 
 
 import android.os.Bundle;

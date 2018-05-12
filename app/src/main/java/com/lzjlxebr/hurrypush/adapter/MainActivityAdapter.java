@@ -6,9 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.lzjlxebr.hurrypush.base.AchievementFragment;
-import com.lzjlxebr.hurrypush.base.StatisticsFragment;
-import com.lzjlxebr.hurrypush.base.TodayFragment;
+import com.lzjlxebr.hurrypush.ui.base.AchievementFragment;
+import com.lzjlxebr.hurrypush.ui.base.StatisticsFragment;
+import com.lzjlxebr.hurrypush.ui.base.TodayFragment;
 
 public class MainActivityAdapter extends FragmentPagerAdapter {
 

@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.base;
+package com.lzjlxebr.hurrypush.ui.base;
 
 
 import android.database.Cursor;
@@ -70,7 +70,6 @@ public class StatisticsFragment extends Fragment implements CalendarView.OnDateS
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
-
 
         initView(view);
         getLoaderManager().initLoader(LOADER_ID, null, this);

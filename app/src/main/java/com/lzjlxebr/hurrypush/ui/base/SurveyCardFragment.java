@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.base;
+package com.lzjlxebr.hurrypush.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.adapter.CardAdapter;
-import com.lzjlxebr.hurrypush.adapter.SurveyCardAbstractFragment;
 import com.lzjlxebr.hurrypush.entity.SurveyEntry;
 
 import butterknife.BindString;

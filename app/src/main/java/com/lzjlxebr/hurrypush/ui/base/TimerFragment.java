@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.base;
+package com.lzjlxebr.hurrypush.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,12 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
-import com.lzjlxebr.hurrypush.custom.HurryPushTimerView;
 import com.lzjlxebr.hurrypush.entity.TimerInnerNotificationEntry;
+import com.lzjlxebr.hurrypush.ui.custom.HurryPushTimerView;
 
 import org.greenrobot.eventbus.EventBus;
 

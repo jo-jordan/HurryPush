@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.custom;
+package com.lzjlxebr.hurrypush.ui.custom;
 
 import android.content.Context;
 import android.view.LayoutInflater;

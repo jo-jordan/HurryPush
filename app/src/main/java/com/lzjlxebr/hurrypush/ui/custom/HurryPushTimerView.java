@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.custom;
+package com.lzjlxebr.hurrypush.ui.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -85,11 +85,11 @@ public class HurryPushTimerView extends LinearLayout{
     }
 
     private void initView() {
-        mTvHour = (TextView) findViewById(R.id.tv_hour);
-        mTvMin = (TextView) findViewById(R.id.tv_minute);
-        mTvSec = (TextView) findViewById(R.id.tv_second);
-        mTvColon1 = (TextView) findViewById(R.id.divider_hour_minute);
-        mTvColon2 = (TextView) findViewById(R.id.divider_minute_second);
+        mTvHour = findViewById(R.id.tv_hour);
+        mTvMin = findViewById(R.id.tv_minute);
+        mTvSec = findViewById(R.id.tv_second);
+        mTvColon1 = findViewById(R.id.divider_hour_minute);
+        mTvColon2 = findViewById(R.id.divider_minute_second);
 
         changeSize(mHourWidth, mClockWidth, mTvHour);
         changeSize(mMinWidth, mClockWidth, mTvMin);
