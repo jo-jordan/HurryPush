@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".base.MainActivity"
+            android:name=".ui.base.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -21,9 +21,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".base.SettingsActivity"
+            android:name=".ui.base.SettingsActivity"
             android:label="@string/nav_drawer_item_settings"
-            android:parentActivityName=".base.MainActivity"
+            android:parentActivityName=".ui.base.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -36,17 +36,17 @@
             android:exported="false" />
 
         <activity
-            android:name=".base.StartFlyActivity"
+            android:name=".ui.base.StartFlyActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_start_fly"
-            android:parentActivityName=".base.MainActivity"
+            android:parentActivityName=".ui.base.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".base.SurveyActivity"
+            android:name=".ui.base.SurveyActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_start_survey"
-            android:parentActivityName=".base.MainActivity"
+            android:parentActivityName=".ui.base.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
