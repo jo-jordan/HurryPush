@@ -15,9 +15,9 @@ public class HurryPushSyncService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        HurryPushSyncTask.syncClientInfo(this);
+        //HurryPushSyncTask.syncClientInfo(this);
         HurryPushSyncTask.syncLevelRule(this);
-        HurryPushSyncTask.syncDefecationRecord(this);
+        //HurryPushSyncTask.syncDefecationRecord(this);
         HurryPushSyncTask.syncAchievementProgress(this);
         //stopSelf();
     }
