@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".base.StartFlyActivity">
+    tools:context=".ui.base.StartFlyActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/start_fly_toolbar"
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/start_fly_fragment"
-        android:name="com.lzjlxebr.hurrypush.base.TimerFragment"
+        android:name="com.lzjlxebr.hurrypush.ui.base.TimerFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/start_fly_toolbar"
@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/timer_inner_notification_fragment"
-        android:name="com.lzjlxebr.hurrypush.base.TimerInnerNotificationFragment"
+        android:name="com.lzjlxebr.hurrypush.ui.base.TimerInnerNotificationFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/start_fly_fragment"

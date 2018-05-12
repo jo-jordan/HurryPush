@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.lzjlxebr.hurrypush.base.MainActivity">
+    tools:context="com.lzjlxebr.hurrypush.ui.base.MainActivity">
 
     <ProgressBar
         android:id="@+id/achievement_load_indicator"

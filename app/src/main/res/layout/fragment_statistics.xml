@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
-    tools:context="com.lzjlxebr.hurrypush.base.MainActivity">
+    tools:context="com.lzjlxebr.hurrypush.ui.base.MainActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -77,7 +77,7 @@
                         app:lunar_text_size="0sp"
                         app:max_year="2020"
                         app:min_year="2017"
-                        app:month_view="com.lzjlxebr.hurrypush.custom.MaterialMonthView"
+                        app:month_view="com.lzjlxebr.hurrypush.ui.custom.MaterialMonthView"
                         app:month_view_scrollable="true"
                         app:month_view_show_mode="mode_only_current"
                         app:other_month_text_color="#e1e1e1"
@@ -85,7 +85,7 @@
                         app:selected_text_color="#333"
                         app:selected_theme_color="#80cfcfcf"
                         app:week_background="#fff"
-                        app:week_bar_view="com.lzjlxebr.hurrypush.custom.MaterialWeekBar"
+                        app:week_bar_view="com.lzjlxebr.hurrypush.ui.custom.MaterialWeekBar"
                         app:week_start_with="mon"
                         app:week_text_color="#111111"
                         app:week_view_scrollable="true" />

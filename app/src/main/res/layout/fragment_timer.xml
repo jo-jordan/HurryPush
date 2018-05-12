@@ -31,7 +31,7 @@
             android:layout_margin="3dp"
             android:src="@drawable/ic_timer" />
 
-        <com.lzjlxebr.hurrypush.custom.HurryPushTimerView
+        <com.lzjlxebr.hurrypush.ui.custom.HurryPushTimerView
             android:id="@+id/hurry_push_timer_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

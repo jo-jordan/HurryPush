@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-    tools:context=".base.SurveyActivity">
+    tools:context=".ui.base.SurveyActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/survey_toolbar"

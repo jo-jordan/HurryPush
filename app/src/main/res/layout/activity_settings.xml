@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/client_settings_fragment"
-        android:name="com.lzjlxebr.hurrypush.base.SettingsFragment"
+        android:name="com.lzjlxebr.hurrypush.ui.base.SettingsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

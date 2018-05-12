@@ -4,6 +4,12 @@
     <!-- problem report menu -->
     <string name="menu_action_report">Problem Report</string>
 
+    <!-- the first time start-->
+    <string name="first_time_title">改头换面哈哈哈嗝</string>
+    <string name="first_time_content">改头换面哈哈哈嗝</string>
+    <string name="first_time_agree">就它了！</string>
+    <string name="first_time_disagree"></string>
+
     <!-- navigation drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

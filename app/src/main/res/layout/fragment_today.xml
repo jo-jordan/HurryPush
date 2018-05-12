@@ -14,7 +14,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.lzjlxebr.hurrypush.base.MainActivity">
+        tools:context="com.lzjlxebr.hurrypush.ui.base.MainActivity">
 
         <ProgressBar
             android:id="@+id/today_load_indicator"
