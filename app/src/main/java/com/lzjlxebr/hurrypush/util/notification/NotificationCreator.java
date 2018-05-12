@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.notification;
+package com.lzjlxebr.hurrypush.util.notification;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,7 +10,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
 import com.lzjlxebr.hurrypush.R;
-import com.lzjlxebr.hurrypush.base.MainActivity;
+import com.lzjlxebr.hurrypush.ui.base.MainActivity;
 
 public class NotificationCreator {
     private static final String CHANNEL_ID = "52067";
