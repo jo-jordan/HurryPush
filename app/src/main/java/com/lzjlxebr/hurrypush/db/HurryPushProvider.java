@@ -63,19 +63,22 @@ public class HurryPushProvider extends ContentProvider {
         switch (uriMatcher.match(uri)) {
             // for client_info
             case CODE_CLIENT_INFO_ONLY_ONE: {
+                selection = HurryPushContract.ClientInfoEntry._ID + "=?";
                 cursor = hurryPushDbHelper.getReadableDatabase().query(
                         HurryPushContract.ClientInfoEntry.TABLE_NAME,
                         projection,
-                        HurryPushContract.ClientInfoEntry.COLUMN_APP_ID + " =? ",
+                        selection,
                         selectionArgs,
                         null,
                         null,
-                        sortOrder
+                        sortOrder,
+                        "1"
                 );
                 break;
             }
             // for level_rule
             case CODE_LEVEL_RULE: {
+                selection = HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_ID + "=?";
                 cursor = hurryPushDbHelper.getReadableDatabase().query(
                         HurryPushContract.LevelRuleEntry.TABLE_NAME,
                         projection,
@@ -175,6 +178,20 @@ public class HurryPushProvider extends ContentProvider {
                         null,
                         values
                 );
+                if (numRowInserted > 0) {
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return uri.buildUpon().appendQueryParameter("insertedId", numRowInserted + "").build();
+                } else {
+                    return null;
+                }
+            }
+            case CODE_CLIENT_INFO_ONLY_ONE: {
+                numRowInserted = hurryPushDbHelper.getWritableDatabase().insert(
+                        HurryPushContract.ClientInfoEntry.TABLE_NAME,
+                        null,
+                        values
+                );
+                Log.d(LOG_TAG, "insert row: " + numRowInserted);
                 if (numRowInserted > 0) {
                     getContext().getContentResolver().notifyChange(uri, null);
                     return uri.buildUpon().appendQueryParameter("insertedId", numRowInserted + "").build();
@@ -353,6 +370,7 @@ public class HurryPushProvider extends ContentProvider {
         int numRowUpdated;
         switch (uriMatcher.match(uri)) {
             case CODE_CLIENT_INFO_ONLY_ONE:
+                selection = HurryPushContract.ClientInfoEntry._ID + "=?";
                 numRowUpdated = hurryPushDbHelper.getWritableDatabase().update(
                         HurryPushContract.ClientInfoEntry.TABLE_NAME,
                         values,
@@ -371,9 +389,10 @@ public class HurryPushProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("This uri is not supported to update: " + uri);
         }
+        Log.d(LOG_TAG, "update row: " + numRowUpdated);
         if (numRowUpdated != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
-        return 0;
+        return numRowUpdated;
     }
 }
