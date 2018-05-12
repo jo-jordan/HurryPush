@@ -1,6 +1,7 @@
-package com.lzjlxebr.hurrypush.base;
+package com.lzjlxebr.hurrypush.ui.base;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,7 +16,6 @@ import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.adapter.CardAdapter;
-import com.lzjlxebr.hurrypush.adapter.SurveyCardAbstractFragment;
 import com.lzjlxebr.hurrypush.db.HurryPushContract;
 import com.lzjlxebr.hurrypush.entity.DefecationEvent;
 import com.lzjlxebr.hurrypush.entity.DefecationFinalRecord;
@@ -47,6 +47,16 @@ public class SurveyFinalCardFragment extends SurveyCardAbstractFragment {
     @BindString(R.string.card_title4)
     String title4;
 
+    public static final int INDEX_COLUMN_LEVEL_ID = 0;
+    public static final int INDEX_COLUMN_LEVEL_NUMBER = 1;
+    public static final int INDEX_COLUMN_LEVEL_EXP_SINGLE = 2;
+    public static final int INDEX_COLUMN_LEVEL_EXP_TOTAL = 3;
+    public static String[] LEVEL_RULE_PROJECTION = {
+            HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_ID,
+            HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_NUMBER,
+            HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_EXP_SINGLE,
+            HurryPushContract.LevelRuleEntry.COLUMN_LEVEL_EXP_TOTAL,
+    };
 
     @Override
     public void setCardTitleAndContent() {
@@ -76,6 +86,8 @@ public class SurveyFinalCardFragment extends SurveyCardAbstractFragment {
         return mCardView;
     }
 
+    DefecationFinalRecord defecationFinalRecord;
+
     @OnClick(R.id.button_survey_done)
     public void submitResult(Button button) {
         SurveyActivity activity = (SurveyActivity) getActivity();
@@ -83,9 +95,10 @@ public class SurveyFinalCardFragment extends SurveyCardAbstractFragment {
         SurveyEntry surveyEntry = activity.getSurveyEntry();
         DefecationEvent defecationEvent = activity.getDefecationEvent();
 
-        DefecationFinalRecord defecationFinalRecord = BillCalculator.calculate(surveyEntry, defecationEvent);
+        defecationFinalRecord = BillCalculator.calculate(surveyEntry, defecationEvent);
 
         updateDefecationDataTable(defecationFinalRecord);
+        updateExp();
 
     }
 
@@ -114,6 +127,67 @@ public class SurveyFinalCardFragment extends SurveyCardAbstractFragment {
 
         Uri updateUri = HurryPushContract.DefecationRecordEntry.DEFECATION_RECORD_URI;
         this.getActivity().getContentResolver().update(updateUri, contentValues, "_id=?", new String[]{"" + id});
+    }
+
+    private void updateExp() {
+        // get current level and exp and upgrade exp
+        Uri clienInfoUri = HurryPushContract.ClientInfoEntry.CLIENT_INFO_URI;
+        Uri levelRuleUri = HurryPushContract.LevelRuleEntry.LEVEL_RULE_URI;
+
+        Cursor cursorClient = this.getActivity().getContentResolver().query(
+                clienInfoUri, MainActivity.TODAY_PROJECTION, null, new String[]{"1"}, null
+        );
+
+        if (cursorClient.getCount() > 0) {
+            cursorClient.moveToFirst();
+            int currentLevelId = cursorClient.getInt(MainActivity.INDEX_COLUMN_CURRENT_LEVEL_ID);
+            int currentLevelExp = cursorClient.getInt(MainActivity.INDEX_COLUMN_CURRENT_EXP);
+            int upgradeExp = cursorClient.getInt(MainActivity.INDEX_COLUMN_UPGRADE_EXP);
+
+            cursorClient.close();
+
+            double gainExp = defecationFinalRecord.getGainExp();
+
+            double afterGainExp = currentLevelExp + gainExp;
+
+            double diff = upgradeExp - afterGainExp;
+
+            if (diff > 0) {
+                // 没达到升级要求经验值
+                ContentValues updateClientNoGainValues = new ContentValues();
+                updateClientNoGainValues.put(HurryPushContract.ClientInfoEntry.COLUMN_CURRENT_EXP, afterGainExp);
+                getActivity().getContentResolver().update(clienInfoUri, updateClientNoGainValues, null, new String[]{"1"});
+                //return;
+            } else {
+                if (currentLevelId >= 10) {
+                    //满级
+                    return;
+                }
+                // 达到升级条件，查询下一级需要的经验值，并更新等级及经验
+                Cursor cursorLevelRule = getActivity().getContentResolver().query(
+                        levelRuleUri, LEVEL_RULE_PROJECTION, null, new String[]{"" + (currentLevelId + 1)}, null
+                );
+                if (cursorLevelRule != null) {
+                    cursorLevelRule.moveToFirst();
+                    int levelExpSingle = cursorLevelRule.getInt(INDEX_COLUMN_LEVEL_EXP_SINGLE);
+                    int levelId = cursorLevelRule.getInt(INDEX_COLUMN_LEVEL_ID);
+
+                    //更新等级
+                    ContentValues updateClientGainValues = new ContentValues();
+                    updateClientGainValues.put(HurryPushContract.ClientInfoEntry.COLUMN_CURRENT_EXP, -diff);
+                    updateClientGainValues.put(HurryPushContract.ClientInfoEntry.COLUMN_UPGRADE_EXP, levelExpSingle);
+                    updateClientGainValues.put(HurryPushContract.ClientInfoEntry.COLUMN_CURRENT_LEVEL_ID, levelId);
+                    getActivity().getContentResolver().update(clienInfoUri, updateClientGainValues, null, new String[]{"1"});
+
+                    cursorLevelRule.close();
+                }
+            }
+        } else {
+            return;
+        }
+    }
+
+    private void updateAchievement() {
 
     }
 }
