@@ -12,7 +12,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
-import com.lzjlxebr.hurrypush.base.MainActivity;
+import com.lzjlxebr.hurrypush.ui.base.MainActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ClientInfoAdapter extends RecyclerView.Adapter<ClientInfoAdapter.ClientInfoViewHolder> {
     private final static String LOG_TAG = ClientInfoAdapter.class.getSimpleName();
@@ -27,7 +30,17 @@ public class ClientInfoAdapter extends RecyclerView.Adapter<ClientInfoAdapter.Cl
     @Override
     public ClientInfoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.client_info_list_items, parent, false);
+        TextView mCurrentLevel = view.findViewById(R.id.nav_header_current_level);
+        ProgressBar mExpIndicator = view.findViewById(R.id.nav_header_current_exp);
 
+        int currentLevelId = 1;
+        int CurrentLevelExp = 0;
+        int upgradeExp = 0;
+        String currentLevelText = "等级: " + currentLevelId;
+
+        mCurrentLevel.setText(currentLevelText);
+        mExpIndicator.setMax(upgradeExp);
+        mExpIndicator.setProgress(CurrentLevelExp);
         return new ClientInfoViewHolder(view);
     }
 
@@ -39,13 +52,20 @@ public class ClientInfoAdapter extends RecyclerView.Adapter<ClientInfoAdapter.Cl
         int CurrentLevelExp = mCursor.getInt(MainActivity.INDEX_COLUMN_CURRENT_EXP);
         int upgradeExp = mCursor.getInt(MainActivity.INDEX_COLUMN_UPGRADE_EXP);
 
-        holder.mCurrentLevel.setText("LEVEL." + currentLevelId + "\n");
+        String currentLevelText = "等级: " + currentLevelId;
+
+        if (mCursor == null) {
+            currentLevelId = 1;
+            CurrentLevelExp = 0;
+            upgradeExp = 0;
+            currentLevelText = "等级: " + currentLevelId;
+        }
+
+        holder.mCurrentLevel.setText(currentLevelText);
 
         Log.d(LOG_TAG,"holder.indicator is null? " + (holder.mExpIndicator == null));
         holder.mExpIndicator.setMax(upgradeExp);
         holder.mExpIndicator.setProgress(CurrentLevelExp);
-
-
     }
 
     @Override
@@ -62,16 +82,14 @@ public class ClientInfoAdapter extends RecyclerView.Adapter<ClientInfoAdapter.Cl
 
     class ClientInfoViewHolder extends RecyclerView.ViewHolder {
 
-        final TextView mCurrentLevel;
-        final ProgressBar mExpIndicator;
+        @BindView(R.id.nav_header_current_level)
+        TextView mCurrentLevel;
+        @BindView(R.id.nav_header_current_exp)
+        ProgressBar mExpIndicator;
 
         ClientInfoViewHolder(View view) {
             super(view);
-
-            mCurrentLevel = view.findViewById(R.id.nav_header_current_level);
-            mExpIndicator = view.findViewById(R.id.nav_header_current_exp);
+            ButterKnife.bind(this, view);
         }
-
     }
-
 }
