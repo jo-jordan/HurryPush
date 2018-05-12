@@ -1,4 +1,4 @@
-package com.lzjlxebr.hurrypush.base;
+package com.lzjlxebr.hurrypush.ui.base;
 
 
 import android.database.Cursor;
@@ -46,19 +46,21 @@ public class TodayFragment extends Fragment implements LoaderManager.LoaderCallb
     @BindString(R.string.load_error_msg)
     String loadErrorMsg;
 
-    public static String[] TODAY_PROJECTION = {
-            HurryPushContract.ClientInfoEntry.COLUMN_APP_ID,
-            HurryPushContract.ClientInfoEntry.COLUMN_GENDER,
-            HurryPushContract.ClientInfoEntry.COLUMN_CURRENT_LEVEL_ID,
-            HurryPushContract.ClientInfoEntry.COLUMN_CURRENT_EXP,
-            HurryPushContract.ClientInfoEntry.COLUMN_UPGRADE_EXP,
-    };
+    public static final int INDEX_COLUMN_IS_FIRST_START = 5;
 
     public static final int INDEX_COLUMN_APP_ID = 0;
     public static final int INDEX_COLUMN_GENDER = 1;
     public static final int INDEX_COLUMN_CURRENT_LEVEL_ID = 2;
     public static final int INDEX_COLUMN_CURRENT_EXP = 3;
     public static final int INDEX_COLUMN_UPGRADE_EXP = 4;
+    public static String[] TODAY_PROJECTION = {
+            HurryPushContract.ClientInfoEntry.COLUMN_APP_ID,
+            HurryPushContract.ClientInfoEntry.COLUMN_GENDER,
+            HurryPushContract.ClientInfoEntry.COLUMN_CURRENT_LEVEL_ID,
+            HurryPushContract.ClientInfoEntry.COLUMN_CURRENT_EXP,
+            HurryPushContract.ClientInfoEntry.COLUMN_UPGRADE_EXP,
+            HurryPushContract.ClientInfoEntry.COLUMN_IS_FIRST_START,
+    };
 
     private static final int TODAY_LOADER_ID = 1000;
 
@@ -100,7 +102,7 @@ public class TodayFragment extends Fragment implements LoaderManager.LoaderCallb
                         todayQueryUri,
                         TODAY_PROJECTION,
                         null,
-                        new String[]{"b0fb3e80-82ed-44c5-aaaa-824bb129efe7"},
+                        new String[]{"1"},
                         null
                 );
             }
@@ -141,4 +143,5 @@ public class TodayFragment extends Fragment implements LoaderManager.LoaderCallb
         mRecyclerView.setVisibility(View.INVISIBLE);
         mTvErrorMsg.setVisibility(View.INVISIBLE);
     }
+
 }
