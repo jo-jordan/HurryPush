@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
-import com.lzjlxebr.hurrypush.base.TodayFragment;
+import com.lzjlxebr.hurrypush.ui.base.TodayFragment;
 
 public class TodayFragmentAdapter extends RecyclerView.Adapter<TodayFragmentAdapter.TodayAdapterViewHolder> {
     private final Context mConetxt;
@@ -38,13 +38,16 @@ public class TodayFragmentAdapter extends RecyclerView.Adapter<TodayFragmentAdap
         int currentLevelId = mCursor.getInt(TodayFragment.INDEX_COLUMN_CURRENT_LEVEL_ID);
         int CurrentLevelExp = mCursor.getInt(TodayFragment.INDEX_COLUMN_CURRENT_EXP);
         int upgradeExp = mCursor.getInt(TodayFragment.INDEX_COLUMN_UPGRADE_EXP);
+        int isFirstTime = mCursor.getInt(TodayFragment.INDEX_COLUMN_IS_FIRST_START);
 
         holder.todayTextView.setText("APP_ID: " + appId + "\n");
         holder.todayTextView.append("GENDER: " + gender + "\n");
         holder.todayTextView.append("CURRENT LEVEL ID: " + currentLevelId + "\n");
         holder.todayTextView.append("CURRENT LEVEL EXP: " + CurrentLevelExp + "\n");
-        holder.todayTextView.append("UPGRADE EXP: " + upgradeExp);
+        holder.todayTextView.append("UPGRADE EXP: " + upgradeExp + "\n");
+        holder.todayTextView.append("IS_FIRST_START EXP: " + isFirstTime);
     }
+
 
     @Override
     public int getItemCount() {
@@ -63,7 +66,7 @@ public class TodayFragmentAdapter extends RecyclerView.Adapter<TodayFragmentAdap
         TodayAdapterViewHolder(View view) {
             super(view);
 
-            todayTextView = (TextView) view.findViewById(R.id.today_tv);
+            todayTextView = view.findViewById(R.id.today_tv);
         }
     }
 }
