@@ -18,6 +18,7 @@ public class HurryPushContract {
         public static final String COLUMN_CURRENT_LEVEL_ID = "current_level_id";
         public static final String COLUMN_CURRENT_EXP = "current_exp";
         public static final String COLUMN_UPGRADE_EXP = "upgrade_exp";
+        public static final String COLUMN_IS_FIRST_START = "is_first_start";
 
     }
 

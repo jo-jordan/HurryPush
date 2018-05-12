@@ -23,7 +23,8 @@ public class HurryPushDbHelper extends SQLiteOpenHelper {
                         HurryPushContract.ClientInfoEntry.COLUMN_GENDER + " integer not null," +
                         HurryPushContract.ClientInfoEntry.COLUMN_CURRENT_LEVEL_ID + " integer not null default 1," +
                         HurryPushContract.ClientInfoEntry.COLUMN_CURRENT_EXP + " integer not null default 0," +
-                        HurryPushContract.ClientInfoEntry.COLUMN_UPGRADE_EXP + " integer not null default 300" +
+                        HurryPushContract.ClientInfoEntry.COLUMN_UPGRADE_EXP + " integer not null default 300," +
+                        HurryPushContract.ClientInfoEntry.COLUMN_IS_FIRST_START + " integer not null default 1" +
                         ");";
 
         final String SQL_CREATE_LEVEL_RULE_TABLE =
@@ -70,10 +71,7 @@ public class HurryPushDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_DEFECATION_RECORD_TABLE);
         db.execSQL(SQL_CREATE_ACHIEVEMENT_PROGRESS_TABLE);
 
-
         Log.d(LOG_TAG,"All databases has been created.");
-
-
     }
 
     @Override
