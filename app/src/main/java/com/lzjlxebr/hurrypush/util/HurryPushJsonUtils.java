@@ -24,6 +24,7 @@ public class HurryPushJsonUtils {
     private static final String CLIENT_CURRENT_LEVEL_ID = "current_level_id";
     private static final String CLIENT_CURRENT_LEVEL_EXP = "current_level_exp";
     private static final String CLIENT_UPGRADE_EXP = "upgrade_exp";
+    private static final String CLIENT_IS_FIRST_START = "is_first_start";
     // defecation record
     private static final String TABLE_DEFECATION_RECORD = "defecation_record";
     private static final String DEFECATION_RECORD__ID = "_id";
@@ -59,9 +60,6 @@ public class HurryPushJsonUtils {
 
     public static ContentValues[] getClientInfoContentValuesFromJson(Context context, String jsonResponse) throws JSONException {
         JSONObject clientInfoJson = new JSONObject(jsonResponse);
-//        if (!clientInfoJson.has(TABLE_CLIENT_INFO)) {
-//            return null;
-//        }
 
         JSONArray jsonArray = clientInfoJson.getJSONArray(TABLE_COLUMNS);
 
@@ -74,6 +72,7 @@ public class HurryPushJsonUtils {
             int current_level_id;
             int current_level_exp;
             int upgrade_exp;
+            int is_first_start;
 
             JSONObject column = jsonArray.getJSONObject(i);
 
@@ -83,6 +82,7 @@ public class HurryPushJsonUtils {
             current_level_id = column.getInt(CLIENT_CURRENT_LEVEL_ID);
             current_level_exp = column.getInt(CLIENT_CURRENT_LEVEL_EXP);
             upgrade_exp = column.getInt(CLIENT_UPGRADE_EXP);
+            is_first_start = column.getInt(CLIENT_IS_FIRST_START);
 
             ContentValues contentValue = new ContentValues();
             contentValue.put(HurryPushContract.ClientInfoEntry.COLUMN_APP_ID, app_id);
@@ -90,13 +90,10 @@ public class HurryPushJsonUtils {
             contentValue.put(HurryPushContract.ClientInfoEntry.COLUMN_CURRENT_LEVEL_ID, current_level_id);
             contentValue.put(HurryPushContract.ClientInfoEntry.COLUMN_CURRENT_EXP, current_level_exp);
             contentValue.put(HurryPushContract.ClientInfoEntry.COLUMN_UPGRADE_EXP, upgrade_exp);
+            contentValue.put(HurryPushContract.ClientInfoEntry.COLUMN_IS_FIRST_START, is_first_start);
 
             contentValues[i] = contentValue;
         }
-
-        //Log.d(LOG_TAG,"today json: "+jsonResponse);
-
-
         return contentValues;
     }
 
@@ -133,7 +130,6 @@ public class HurryPushJsonUtils {
             upload_to_server = column.getInt(DEFECATION_RECORD_UPLOAD_TO_SERVER);
             server_call_back = column.getInt(DEFECATION_RECORD_SERVER_CALL_BACK);
 
-
             ContentValues contentValue = new ContentValues();
             contentValue.put(HurryPushContract.DefecationRecordEntry.COLUMN_INSERT_TIME, DateFormatterUtils.normalizeDateFromString(insert_time));
             contentValue.put(HurryPushContract.DefecationRecordEntry.COLUMN_START_TIME, DateFormatterUtils.normalizeDateFromString(start_time));
@@ -149,8 +145,6 @@ public class HurryPushJsonUtils {
 
             contentValues[i] = contentValue;
         }
-
-
         return contentValues;
     }
 
@@ -182,8 +176,6 @@ public class HurryPushJsonUtils {
 
             contentValues[i] = contentValue;
         }
-
-
         return contentValues;
     }
 
@@ -230,8 +222,6 @@ public class HurryPushJsonUtils {
 
             contentValues[i] = contentValue;
         }
-
-
         return contentValues;
     }
 }
