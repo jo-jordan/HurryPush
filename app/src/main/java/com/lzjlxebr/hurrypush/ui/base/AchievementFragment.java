@@ -54,17 +54,27 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
     @BindString(R.string.load_error_msg)
     String loadErrorMsg;
 
-    public static String[] ACHIEVEMNET_PROJECTION = {
-            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_NAME,
-            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_DESCRIPTION,
-            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS,
-            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_CONDITION
-    };
+    public static final int INDEX_COLUMN_ACHI_TYPE = 4;
 
     public static final int INDEX_COLUMN_ACHI_NAME = 0;
     public static final int INDEX_COLUMN_ACHI_DESCRIPTION = 1;
     public static final int INDEX_COLUMN_ACHI_PROGRESS = 2;
     public static final int INDEX_COLUMN_ACHI_CONDITION = 3;
+    public static final int INDEX_COLUMN_ACHI_REQUIRED_MINUTES = 5;
+    public static final int INDEX_COLUMN_ACHI_REQUIRED_DAYS = 6;
+    public static final int INDEX_COLUMN_UPDATE_TIME = 7;
+    public static final int INDEX_COLUMN_ACHI_ID = 8;
+    public static String[] ACHIEVEMNET_PROJECTION = {
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_NAME,
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_DESCRIPTION,
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS,
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_CONDITION,
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_TYPE,
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_REQUIRED_MINUTES,
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_REQUIRED_DAYS,
+            HurryPushContract.AchievementProgressEntry.COLUMN_UPDATE_TIME,
+            HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_ID
+    };
 
     private static final int ACHIEVEMENT_LOADER_ID = 2000;
 

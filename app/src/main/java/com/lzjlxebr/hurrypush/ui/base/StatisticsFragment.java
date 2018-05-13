@@ -31,9 +31,9 @@ public class StatisticsFragment extends Fragment implements CalendarView.OnDateS
         CalendarView.OnMonthChangeListener,
         View.OnClickListener, LoaderManager.LoaderCallbacks<Cursor> {
 
-    public static final int INDEX_COLUMN_START_TIME = 0;
-
     CalendarLayout mCalendarLayout;
+
+    public static final int INDEX_COLUMN_START_TIME = 0;
     public static final int INDEX_COLUMN_END_TIME = 1;
     public static final int INDEX_COLUMN_IS_USER_FINISH = 2;
     public static final int INDEX_COLUMN_GAIN_EXP = 3;
@@ -42,6 +42,8 @@ public class StatisticsFragment extends Fragment implements CalendarView.OnDateS
     public static final int INDEX_COLUMN_STICKINESS = 6;
     public static final int INDEX_COLUMN_OVERALL_RATING = 7;
     public static final int INDEX_COLUMN_SERVER_CALL_BACK = 8;
+    public static final int INDEX_COLUMN_INSERT_TIME = 9;
+
     private static final int LOADER_ID = 2002;
     public static String[] DEFECATION_RECORD_PROJECTION = {
             HurryPushContract.DefecationRecordEntry.COLUMN_START_TIME,
@@ -52,7 +54,8 @@ public class StatisticsFragment extends Fragment implements CalendarView.OnDateS
             HurryPushContract.DefecationRecordEntry.COLUMN_CONSTIPATION,
             HurryPushContract.DefecationRecordEntry.COLUMN_STICKINESS,
             HurryPushContract.DefecationRecordEntry.COLUMN_OVERALL_RATING,
-            HurryPushContract.DefecationRecordEntry.COLUMN_SERVER_CALL_BACK
+            HurryPushContract.DefecationRecordEntry.COLUMN_SERVER_CALL_BACK,
+            HurryPushContract.DefecationRecordEntry.COLUMN_INSERT_TIME
     };
     CalendarView mCalendarView;
     TextView mCurrentDate, mTvDefecationDesc;

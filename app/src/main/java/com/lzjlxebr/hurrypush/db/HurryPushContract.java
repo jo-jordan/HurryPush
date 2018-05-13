@@ -61,7 +61,7 @@ public class HurryPushContract {
 
         public static final String TABLE_NAME = "achievement_progress";
 
-        public static final String DEFAULT_SORT_ORDER = "achi_id asc";
+        public static final String DEFAULT_SORT_ORDER = "achi_id";
 
         public static final String COLUMN_ACHI_TYPE = "achi_type";
         public static final String COLUMN_ACHI_REQUIRED_MINUTES = "achi_required_minutes";
