@@ -81,7 +81,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                             @Override
                             public boolean onPreferenceClick(Preference preference) {
-                                HurryPushSyncUtils.startImmediateSync(getActivity());
+                                HurryPushSyncUtils.startImmediateUpdateSync(getActivity());
                                 return false;
                             }
                         });
