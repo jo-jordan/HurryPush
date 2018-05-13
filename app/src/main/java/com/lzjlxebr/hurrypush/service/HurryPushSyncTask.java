@@ -136,4 +136,32 @@ public class HurryPushSyncTask {
             e.printStackTrace();
         }
     }
+
+    synchronized public static void syncUpdateAchievementProgress(Context context) {
+        try {
+            // build client info url
+            URL requestUrl = NetworkUtils.buildAchievementProgressUrl();
+            // get response from http request
+            String jsonResponse = NetworkUtils.getResponseFromHttpUrl(requestUrl);
+            // build content values for content provider
+            ContentValues[] contentValues = HurryPushJsonUtils.getAchievementProgressContentValuesFromJson(context, jsonResponse);
+            // save data
+            if (contentValues != null && contentValues.length != 0) {
+                for (int i = 0; i < contentValues.length; i++) {
+                    contentValues[i].remove(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_ID);
+                    contentValues[i].remove(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS);
+                    contentValues[i].remove(HurryPushContract.AchievementProgressEntry.COLUMN_UPDATE_TIME);
+                    ContentResolver contentResolver = context.getContentResolver();
+                    contentResolver.update(
+                            HurryPushContract.AchievementProgressEntry.ACHIEVEMENT_PROGRESS_URI.buildUpon().appendPath("2").build(),
+                            contentValues[i],
+                            null,
+                            new String[]{(String) contentValues[i].get(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_ID)}
+                    );
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
