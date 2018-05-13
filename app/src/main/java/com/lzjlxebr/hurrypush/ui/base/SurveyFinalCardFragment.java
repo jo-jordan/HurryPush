@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,6 +100,10 @@ public class SurveyFinalCardFragment extends SurveyCardAbstractFragment {
 
         updateDefecationDataTable(defecationFinalRecord);
         updateExp();
+        updateAchievement();
+
+        button.setClickable(false);
+        button.setText("已提交");
 
     }
 
@@ -138,7 +143,7 @@ public class SurveyFinalCardFragment extends SurveyCardAbstractFragment {
                 clienInfoUri, MainActivity.TODAY_PROJECTION, null, new String[]{"1"}, null
         );
 
-        if (cursorClient.getCount() > 0) {
+        if (cursorClient != null) {
             cursorClient.moveToFirst();
             int currentLevelId = cursorClient.getInt(MainActivity.INDEX_COLUMN_CURRENT_LEVEL_ID);
             int currentLevelExp = cursorClient.getInt(MainActivity.INDEX_COLUMN_CURRENT_EXP);
@@ -188,6 +193,99 @@ public class SurveyFinalCardFragment extends SurveyCardAbstractFragment {
     }
 
     private void updateAchievement() {
+        Uri achieUri = HurryPushContract.AchievementProgressEntry.ACHIEVEMENT_PROGRESS_URI;
+        // determine the achie type
+        Cursor achieCursor = getActivity().getContentResolver().query(
+                achieUri, AchievementFragment.ACHIEVEMNET_PROJECTION, null, null, HurryPushContract.AchievementProgressEntry.DEFAULT_SORT_ORDER
+        );
 
+        if (achieCursor != null) {
+            //SparseArray<ContentValues> sparseArray = new SparseArray<>();
+
+            //retrieve this record's insert time
+            Uri defecationUri = HurryPushContract.DefecationRecordEntry.DEFECATION_RECORD_URI;
+            long defecationId = defecationFinalRecord.getId();
+            Cursor cursorDefecation = getActivity().getContentResolver().query(
+                    defecationUri.buildUpon().appendPath("1").build(), StatisticsFragment.DEFECATION_RECORD_PROJECTION, null, new String[]{"" + defecationId}, null
+            );
+            if (cursorDefecation != null) {
+                cursorDefecation.moveToFirst();
+
+                long insertTime = cursorDefecation.getLong(StatisticsFragment.INDEX_COLUMN_INSERT_TIME);
+                long startTime = cursorDefecation.getLong(StatisticsFragment.INDEX_COLUMN_START_TIME);
+                long endTime = cursorDefecation.getLong(StatisticsFragment.INDEX_COLUMN_END_TIME);
+                long diffTime = endTime - startTime;
+
+                Log.d("Survey Final", "insert time: " + insertTime);
+                Log.d("Survey Final", "start time: " + startTime);
+                Log.d("Survey Final", "end time: " + endTime);
+                Log.d("Survey Final", "diff time: " + diffTime);
+                for (int i = 0; i < achieCursor.getCount(); i++) {
+                    achieCursor.moveToPosition(i);
+
+                    Log.d("Survey Final", "now cursor position:" + achieCursor.getPosition());
+
+                    int achiType = achieCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_TYPE);
+                    int achiId = achieCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_ID);
+                    int achiReqDays = achieCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_REQUIRED_DAYS);
+                    int achiReqMins = achieCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_REQUIRED_MINUTES);
+                    int achiCondition = achieCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_CONDITION);
+                    int achiProgress = achieCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_PROGRESS);
+                    long achiUPdateTime = achieCursor.getLong(AchievementFragment.INDEX_COLUMN_UPDATE_TIME);
+
+
+                    if (achiCondition == achiProgress) {
+                        // whatever require is when reached continue
+                        continue;
+                    }
+                    if (achiType == 0 && ((insertTime - achiUPdateTime) <= 24 * 60 * 60 * 1000 || achiUPdateTime == 0)) {
+                        ContentValues contentValues = new ContentValues();
+
+                        if (diffTime >= 0 && diffTime <= 60 * 1000 && achiReqMins == 1) {
+                            contentValues.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS, ++achiProgress);
+                            getActivity().getContentResolver().update(achieUri.buildUpon().appendPath("1").build(), contentValues, null, new String[]{"" + achiId});
+                            continue;
+                        }
+                        if (diffTime > 60 * 1000 && diffTime <= 3 * 60 * 1000 && achiReqMins == 3) {
+                            contentValues.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS, ++achiProgress);
+                            getActivity().getContentResolver().update(achieUri.buildUpon().appendPath("1").build(), contentValues, null, new String[]{"" + achiId});
+                            continue;
+                        }
+                        if (diffTime > 3 * 60 * 1000 && diffTime <= 5 * 60 * 1000 && achiReqMins == 5) {
+                            contentValues.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS, ++achiProgress);
+                            getActivity().getContentResolver().update(achieUri.buildUpon().appendPath("1").build(), contentValues, null, new String[]{"" + achiId});
+                            continue;
+                        }
+                        //append for sequential key such as 2,4,7,9
+                        //sparseArray.append(achiId, contentValues);
+                        //put for non-sequential key such as 9,4,7,3
+                        //sparseArray.put(achiId,contentValues);
+                    }
+
+                    if (achiType == 1) {
+                        ContentValues contentValues = new ContentValues();
+
+                        if (diffTime >= 0 && diffTime <= 60 * 1000 && achiReqMins == 1) {
+                            contentValues.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS, ++achiProgress);
+                            getActivity().getContentResolver().update(achieUri.buildUpon().appendPath("1").build(), contentValues, null, new String[]{"" + achiId});
+                            continue;
+                        }
+                        if (diffTime > 60 * 1000 && diffTime <= 3 * 60 * 1000 && achiReqMins == 3) {
+                            contentValues.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS, ++achiProgress);
+                            getActivity().getContentResolver().update(achieUri.buildUpon().appendPath("1").build(), contentValues, null, new String[]{"" + achiId});
+                            continue;
+                        }
+                        if (diffTime > 3 * 60 * 1000 && diffTime <= 5 * 60 * 1000 && achiReqMins == 5) {
+                            contentValues.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS, ++achiProgress);
+                            getActivity().getContentResolver().update(achieUri.buildUpon().appendPath("1").build(), contentValues, null, new String[]{"" + achiId});
+                            continue;
+                        }
+                        //sparseArray.append(achiId, contentValues);
+                    }
+                }
+                cursorDefecation.close();
+                achieCursor.close();
+            }
+        }
     }
 }

@@ -9,6 +9,10 @@ public class DateFormatterUtils {
 
     public static Long normalizeDateFromString(String dateStr) {
 
+        if ("0000-00-00 00:00:00".equals(dateStr) || "0000-00-00 00:00:00.000".equals(dateStr)) {
+            return 0L;
+        }
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
         Date date = null;
         try {
@@ -24,7 +28,6 @@ public class DateFormatterUtils {
 
 
     public static int getYearFromLong(long time) {
-
         String date = SimpleDateFormat.getDateInstance(SimpleDateFormat.MONTH_FIELD, Locale.SIMPLIFIED_CHINESE).format(new Date(time));
         String year = date.substring(0, date.indexOf("年"));
 
