@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_today"
                 android:gravity="center_vertical"
-                android:text="@string/tv_today_survey_todo_title"
+                android:text="@string/tv_today_todo_title"
                 android:textColor="@color/colorPrimary"
                 android:textSize="17sp" />
 
@@ -127,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_today"
-                android:text="@string/tv_today_survey_todo_content" />
+                android:text="@string/tv_today_todo_content" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

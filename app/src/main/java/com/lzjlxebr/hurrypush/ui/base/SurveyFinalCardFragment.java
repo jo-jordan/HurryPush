@@ -241,12 +241,12 @@ public class SurveyFinalCardFragment extends SurveyCardAbstractFragment {
                     if (achiType == 0 && ((insertTime - achiUPdateTime) <= 24 * 60 * 60 * 1000 || achiUPdateTime == 0)) {
                         ContentValues contentValues = new ContentValues();
 
-                        if (diffTime >= 0 && diffTime <= 60 * 1000 && achiReqMins == 1) {
+                        if (diffTime >= 0 && diffTime <= 60 * 1000 && (achiReqMins == 1 || achiReqMins == 3 || achiReqMins == 5)) {
                             contentValues.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS, ++achiProgress);
                             getActivity().getContentResolver().update(achieUri.buildUpon().appendPath("1").build(), contentValues, null, new String[]{"" + achiId});
                             continue;
                         }
-                        if (diffTime > 60 * 1000 && diffTime <= 3 * 60 * 1000 && achiReqMins == 3) {
+                        if (diffTime > 60 * 1000 && diffTime <= 3 * 60 * 1000 && (achiReqMins == 3 || achiReqMins == 5)) {
                             contentValues.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS, ++achiProgress);
                             getActivity().getContentResolver().update(achieUri.buildUpon().appendPath("1").build(), contentValues, null, new String[]{"" + achiId});
                             continue;
@@ -265,12 +265,12 @@ public class SurveyFinalCardFragment extends SurveyCardAbstractFragment {
                     if (achiType == 1) {
                         ContentValues contentValues = new ContentValues();
 
-                        if (diffTime >= 0 && diffTime <= 60 * 1000 && achiReqMins == 1) {
+                        if (diffTime >= 0 && diffTime <= 60 * 1000 && (achiReqMins == 1 || achiReqMins == 3 || achiReqMins == 5)) {
                             contentValues.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS, ++achiProgress);
                             getActivity().getContentResolver().update(achieUri.buildUpon().appendPath("1").build(), contentValues, null, new String[]{"" + achiId});
                             continue;
                         }
-                        if (diffTime > 60 * 1000 && diffTime <= 3 * 60 * 1000 && achiReqMins == 3) {
+                        if (diffTime > 60 * 1000 && diffTime <= 3 * 60 * 1000 && (achiReqMins == 3 || achiReqMins == 5)) {
                             contentValues.put(HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_PROGRESS, ++achiProgress);
                             getActivity().getContentResolver().update(achieUri.buildUpon().appendPath("1").build(), contentValues, null, new String[]{"" + achiId});
                             continue;
