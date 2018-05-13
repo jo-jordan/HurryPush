@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.util.SparseArray;
 
 public class HurryPushProvider extends ContentProvider {
     private static final String LOG_TAG = HurryPushProvider.class.getSimpleName();
@@ -21,15 +22,19 @@ public class HurryPushProvider extends ContentProvider {
 
     // add matcher for defecation_record
     public static final int CODE_DEFECATION_RECORD = 300;
-    public static final int CODE_DEFECATION_RECORD_WITH_INSERT_TIME = 301;
-    public static final int CODE_DEFECATION_RECORD_BY_10 = 310;
+    public static final int CODE_DEFECATION_RECORD_BY_ID = 301;
 
     // add matcher for achievement
     public static final int CODE_ACHIEVEMENT = 400;
+    public static final int CODE_ACHIEVEMENT_BY_ACHIE_ID = 401;
 
     // add all needed uri matcher
     private static final UriMatcher uriMatcher = buildUriMatcher();
     private HurryPushDbHelper hurryPushDbHelper;
+
+    public HurryPushProvider() {
+        this.hurryPushDbHelper = new HurryPushDbHelper(getContext());
+    }
 
     public static UriMatcher buildUriMatcher() {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -41,11 +46,11 @@ public class HurryPushProvider extends ContentProvider {
         matcher.addURI(authority, HurryPushContract.LevelRuleEntry.PATH_LEVEL_RULE + "/#", CODE_LEVEL_RULE_WITH_LEVEL_ID);
 
         matcher.addURI(authority, HurryPushContract.DefecationRecordEntry.PATH_DEFECATION_RECORD, CODE_DEFECATION_RECORD);
-        matcher.addURI(authority, HurryPushContract.DefecationRecordEntry.PATH_DEFECATION_RECORD + "/#", CODE_DEFECATION_RECORD_WITH_INSERT_TIME);
-        matcher.addURI(authority, HurryPushContract.DefecationRecordEntry.PATH_DEFECATION_RECORD + "/10", CODE_DEFECATION_RECORD_BY_10);
+        matcher.addURI(authority, HurryPushContract.DefecationRecordEntry.PATH_DEFECATION_RECORD + "/#", CODE_DEFECATION_RECORD_BY_ID);
 
 
         matcher.addURI(authority, HurryPushContract.AchievementProgressEntry.PATH_ACHIEVEMENT_PROGRESS, CODE_ACHIEVEMENT);
+        matcher.addURI(authority, HurryPushContract.AchievementProgressEntry.PATH_ACHIEVEMENT_PROGRESS + "/#", CODE_ACHIEVEMENT_BY_ACHIE_ID);
 
         return matcher;
     }
@@ -115,20 +120,8 @@ public class HurryPushProvider extends ContentProvider {
                 );
                 break;
             }
-            case CODE_DEFECATION_RECORD_WITH_INSERT_TIME: {
-                cursor = hurryPushDbHelper.getReadableDatabase().query(
-                        HurryPushContract.DefecationRecordEntry.TABLE_NAME,
-                        projection,
-                        HurryPushContract.DefecationRecordEntry.COLUMN_INSERT_TIME + " between ? and ? ",
-                        selectionArgs,
-                        null,
-                        null,
-                        sortOrder,
-                        "20"
-                );
-                break;
-            }
-            case CODE_DEFECATION_RECORD_BY_10: {
+            case CODE_DEFECATION_RECORD_BY_ID: {
+                selection = HurryPushContract.DefecationRecordEntry._ID + "=?";
                 cursor = hurryPushDbHelper.getReadableDatabase().query(
                         HurryPushContract.DefecationRecordEntry.TABLE_NAME,
                         projection,
@@ -136,8 +129,7 @@ public class HurryPushProvider extends ContentProvider {
                         selectionArgs,
                         null,
                         null,
-                        sortOrder,
-                        "10"
+                        sortOrder
                 );
                 break;
             }
@@ -386,6 +378,23 @@ public class HurryPushProvider extends ContentProvider {
                         selectionArgs
                 );
                 break;
+            case CODE_ACHIEVEMENT:
+                numRowUpdated = hurryPushDbHelper.getWritableDatabase().update(
+                        HurryPushContract.AchievementProgressEntry.TABLE_NAME,
+                        values,
+                        selection,
+                        selectionArgs
+                );
+                break;
+            case CODE_ACHIEVEMENT_BY_ACHIE_ID:
+                selection = HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_ID + "=?";
+                numRowUpdated = hurryPushDbHelper.getWritableDatabase().update(
+                        HurryPushContract.AchievementProgressEntry.TABLE_NAME,
+                        values,
+                        selection,
+                        selectionArgs
+                );
+                break;
             default:
                 throw new UnsupportedOperationException("This uri is not supported to update: " + uri);
         }
@@ -395,4 +404,21 @@ public class HurryPushProvider extends ContentProvider {
         }
         return numRowUpdated;
     }
+
+    public int bulkUpdate(Uri uri, SparseArray<ContentValues> sparseArray) {
+        int updatedRows = 0;
+
+        int count = sparseArray.size();
+        for (int i = 0; i < count; i++) {
+            int id = sparseArray.keyAt(i);
+            ContentValues contentValues = sparseArray.get(id);
+            String selection = HurryPushContract.AchievementProgressEntry.COLUMN_ACHI_ID + "=?";
+            String[] selectionArgs = new String[]{"" + id};
+            int numRowUpdated = this.update(uri, contentValues, selection, selectionArgs);
+            if (numRowUpdated > 0)
+                updatedRows++;
+        }
+        return updatedRows;
+    }
+
 }
