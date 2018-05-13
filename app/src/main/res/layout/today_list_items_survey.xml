@@ -23,7 +23,7 @@
             android:src="@drawable/ic_bookmark_black" />
 
         <ImageView
-            android:id="@+id/iv_today"
+            android:id="@+id/iv_today_sruvey"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_alignParentTop="true"
@@ -32,22 +32,22 @@
             android:src="@drawable/ic_survey_todo" />
 
         <TextView
-            android:id="@+id/tv_today_title"
+            android:id="@+id/tv_today_survey_title"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/iv_today"
+            android:layout_toRightOf="@+id/iv_today_sruvey"
             android:gravity="center_vertical"
             android:text="@string/tv_today_survey_todo_title"
             android:textColor="@color/colorPrimary"
             android:textSize="17sp" />
 
         <TextView
-            android:id="@+id/tv_today_content"
+            android:id="@+id/tv_today_survey_content"
             style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_today"
+            android:layout_below="@+id/iv_today_sruvey"
             android:text="@string/tv_today_survey_todo_content" />
 
     </RelativeLayout>

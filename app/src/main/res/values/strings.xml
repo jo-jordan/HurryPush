@@ -45,6 +45,10 @@
     <!-- today -->
     <string name="today_load_error">Load error,go to fix bug.</string>
     <string name="load_error_msg">载入完成，但似乎没有数据</string>
+    <string name="tv_today_survey_todo_title">调查完成情况</string>
+    <string name="tv_today_survey_todo_content">尚无未完成的调查，继续保持！</string>
+    <string name="tv_today_todo_title">今日排便情况</string>
+    <string name="tv_today_todo_content">今日尚未进行排便！</string>
 
     <!-- achievement -->
     <string name="achievement_load_error">Load error,go to fix bug.</string>
