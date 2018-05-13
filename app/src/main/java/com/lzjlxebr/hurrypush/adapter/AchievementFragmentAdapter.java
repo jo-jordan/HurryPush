@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.ui.base.AchievementFragment;
-import com.lzjlxebr.hurrypush.util.NumbersUtils;
 
 public class AchievementFragmentAdapter extends RecyclerView.Adapter<AchievementFragmentAdapter.AchievementFragmentViewHolder> {
     private final Context mConetxt;
@@ -38,15 +37,12 @@ public class AchievementFragmentAdapter extends RecyclerView.Adapter<Achievement
         int achi_progress = mCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_PROGRESS);
         int achi_condition = mCursor.getInt(AchievementFragment.INDEX_COLUMN_ACHI_CONDITION);
 
-        int molecular = NumbersUtils.convertBinaryStringToInt(Integer.toBinaryString(achi_progress));
-        int denominator = NumbersUtils.convertBinaryStringToInt(Integer.toBinaryString(achi_condition));
-
-        String rate = molecular + "/" + denominator;
+        String rate = achi_progress + "/" + achi_condition;
 
         holder.textViewAchiName.setText(achi_name);
         holder.textViewAchiDescription.setText(achi_description);
-        holder.achiProgressBar.setMax(denominator);
-        holder.achiProgressBar.setProgress(molecular);
+        holder.achiProgressBar.setMax(achi_condition);
+        holder.achiProgressBar.setProgress(achi_progress);
         holder.textViewProgressRate.setText(rate);
     }
 
@@ -72,9 +68,6 @@ public class AchievementFragmentAdapter extends RecyclerView.Adapter<Achievement
             textViewAchiDescription = view.findViewById(R.id.tv_avhi_description);
             achiProgressBar = view.findViewById(R.id.achievement_progress_bar);
             textViewProgressRate = view.findViewById(R.id.achi_progress_rate);
-
-
         }
-
     }
 }
