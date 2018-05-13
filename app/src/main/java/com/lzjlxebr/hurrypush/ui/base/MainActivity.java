@@ -329,7 +329,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             Log.d(LOG_TAG, "is first time ? : " + isFirst);
         }
 
-        double rate = Math.round((currentLevelExp * 100.0) / (upgradeExp * 100.0)) / 100.0;
+        double rate = Math.round((currentLevelExp * 1000.0) / (upgradeExp)) / 10.0;
         String rateStr = rate + "%";
 
         String currentLevelText = "等级: " + currentLevelId;
