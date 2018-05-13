@@ -120,7 +120,7 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
     }
 
     private void startMySyncWork() {
-        HurryPushSyncUtils.startImmediateSync(getActivity());
+        HurryPushSyncUtils.startImmediateUpdateSync(getActivity());
     }
 
     @NonNull

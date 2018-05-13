@@ -37,6 +37,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.adapter.MainActivityAdapter;
 import com.lzjlxebr.hurrypush.db.HurryPushContract;
+import com.lzjlxebr.hurrypush.service.HurryPushSyncUtils;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -47,13 +48,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private static final int CLIENT_INFO_LODER_ID = 1001;
-    public static final int INDEX_COLUMN_IS_FIRST_START = 5;
 
     public static final int INDEX_COLUMN_APP_ID = 0;
     public static final int INDEX_COLUMN_GENDER = 1;
     public static final int INDEX_COLUMN_CURRENT_LEVEL_ID = 2;
     public static final int INDEX_COLUMN_CURRENT_EXP = 3;
     public static final int INDEX_COLUMN_UPGRADE_EXP = 4;
+    public static final int INDEX_COLUMN_IS_FIRST_START = 5;
     public static String[] TODAY_PROJECTION = {
             HurryPushContract.ClientInfoEntry.COLUMN_APP_ID,
             HurryPushContract.ClientInfoEntry.COLUMN_GENDER,
@@ -334,7 +335,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         String currentLevelText = "等级: " + currentLevelId;
 
-
         mCurrentLevel = headerLayout.findViewById(R.id.nav_header_current_level);
         mExpIndicator = headerLayout.findViewById(R.id.nav_header_current_exp);
         mCurrentLevelRate = headerLayout.findViewById(R.id.nav_header_current_level_rate);
@@ -356,8 +356,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
 
     private void checkFirstTimeStart() {
-        if (isFirst == 1)
+        if (isFirst == 1) {
             setNickNameAtFirstTime();
+            HurryPushSyncUtils.startImmediateCoverSync(this);
+        }
     }
 
     private void setNickNameAtFirstTime() {
@@ -367,7 +369,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         MaterialDialog dialog = new MaterialDialog.Builder(this)
                 .title(title)
                 .positiveText(agree)
-                .input("名字想多长就多长", null, false, new MaterialDialog.InputCallback() {
+                .input("20够长了吧", null, false, new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         // Do something
@@ -401,8 +403,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         if (updateFlag == 0) {
             int gender = 1;
-            int current_level_id = 3;
-            int current_level_exp = 300;
+            int current_level_id = 1;
+            int current_level_exp = 0;
             int upgrade_exp = 300;
 
             ContentValues contentValue_insert = new ContentValues();
