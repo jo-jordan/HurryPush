@@ -13,11 +13,13 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.adapter.AchievementFragmentAdapter;
@@ -165,14 +167,19 @@ public class AchievementFragment extends Fragment implements LoaderManager.Loade
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void receiveNetSyncEvent(NetSyncTaskComplete event) {
+
         mSwipeRefreshLayout.setRefreshing(false);
+
+        Toast toast = Toast.makeText(getContext(), "成就与等级数据结构更新完成", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 
     private void showErrorMsg() {

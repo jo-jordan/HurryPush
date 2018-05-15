@@ -2,12 +2,16 @@ package com.lzjlxebr.hurrypush.service;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.lzjlxebr.hurrypush.entity.NetSyncTaskComplete;
 
 import org.greenrobot.eventbus.EventBus;
 
 public class HurryPushSyncService extends IntentService {
+
+    private boolean update_flag;
 
     public HurryPushSyncService() {
         super("HurryPushSyncService");
@@ -18,8 +22,8 @@ public class HurryPushSyncService extends IntentService {
         //HurryPushSyncTask.syncClientInfo(this);
         HurryPushSyncTask.syncLevelRule(this);
         //HurryPushSyncTask.syncDefecationRecord(this);
-        boolean update = intent.getBooleanExtra("update", true);
-        if (update) {
+        update_flag = intent.getBooleanExtra("update", true);
+        if (update_flag) {
             HurryPushSyncTask.syncUpdateAchievementProgress(this);
         } else {
             HurryPushSyncTask.syncAchievementProgress(this);
@@ -30,7 +34,13 @@ public class HurryPushSyncService extends IntentService {
     @Override
     public void onDestroy() {
         //NotificationCreator.sendSimpleNotification(this);
-        sendOnCompleteSync();
+        if (update_flag) {
+            sendOnCompleteSync();
+        } else {
+            Toast toast = Toast.makeText(this, "成就与等级数据结构更新完成", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
         super.onDestroy();
     }
 
