@@ -71,10 +71,12 @@
     <string name="card_title2">第二步</string>
     <string name="card_title3">第三步</string>
     <string name="card_title4">最后一步</string>
+    <string name="card_title5">您本次排便结果如下</string>
     <string name="card_content1">你的便便闻起来是什么味道？</string>
     <string name="card_content2">你的便便拉的顺畅吗？</string>
     <string name="card_content3">你的便便黏稠度怎么样？</string>
     <string name="card_content4">前面的内容如无需更改即可提交。</string>
+    <string name="card_content5"> </string>
 
     <!-- timer inner notification -->
     <string name="done">DONE</string>

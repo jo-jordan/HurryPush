@@ -23,6 +23,8 @@ import com.lzjlxebr.hurrypush.entity.DefecationFinalRecord;
 import com.lzjlxebr.hurrypush.entity.SurveyEntry;
 import com.lzjlxebr.hurrypush.util.BillCalculator;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -103,8 +105,14 @@ public class SurveyFinalCardFragment extends SurveyCardAbstractFragment {
         updateAchievement();
 
         button.setClickable(false);
+        mTick.setVisibility(View.VISIBLE);
         button.setText("已提交");
 
+        addResultCard();
+    }
+
+    private void addResultCard() {
+        EventBus.getDefault().postSticky(defecationFinalRecord);
     }
 
     private void updateDefecationDataTable(DefecationFinalRecord defecationFinalRecord) {

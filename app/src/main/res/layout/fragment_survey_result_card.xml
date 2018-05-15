@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="最后一步" />
+                android:text="@string/card_title5" />
 
             <TextView
                 android:id="@+id/tv_final_card_content"
@@ -42,30 +42,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/card_text_margin_top"
-                android:text="好的，确认提交" />
+                android:text="好的，返回首页" />
 
 
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|end|right"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="-6dp"
-            android:src="@drawable/ic_bookmark" />
-
-        <ImageView
-            android:id="@+id/survey_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|end|right"
-            android:layout_marginEnd="9dp"
-            android:layout_marginRight="9dp"
-            android:layout_marginTop="1dp"
-            android:src="@drawable/ic_tick"
-            android:visibility="invisible" />
 
     </FrameLayout>
 

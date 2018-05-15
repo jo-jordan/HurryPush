@@ -12,6 +12,7 @@ import android.util.Log;
 import com.lzjlxebr.hurrypush.R;
 import com.lzjlxebr.hurrypush.adapter.SurveyCardFragmentAdapter;
 import com.lzjlxebr.hurrypush.entity.DefecationEvent;
+import com.lzjlxebr.hurrypush.entity.DefecationFinalRecord;
 import com.lzjlxebr.hurrypush.entity.EmptyEvent;
 import com.lzjlxebr.hurrypush.entity.SurveyEntry;
 
@@ -68,6 +69,21 @@ public class SurveyActivity extends AppCompatActivity {
 
             EventBus.getDefault().removeStickyEvent(event);
         }
+        if (event instanceof DefecationFinalRecord) {
+            addNewResultCardToTheLastOfPager();
+        }
+    }
+
+    private void addNewResultCardToTheLastOfPager() {
+        SurveyResultCardFragment fragment = new SurveyResultCardFragment();
+        mSurveyCardFragmentAdapter.addCardFragment(fragment);
+        Bundle bundle = new Bundle();
+        bundle.putString("card_fragment", "crad_fragment_5");
+        fragment.setArguments(bundle);
+
+        mSurveyCardFragmentAdapter.notifyDataSetChanged();
+
+        mViewPager.setCurrentItem(5);
     }
 
     @Override

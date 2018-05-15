@@ -1,6 +1,6 @@
 package com.lzjlxebr.hurrypush.entity;
 
-public class DefecationFinalRecord {
+public class DefecationFinalRecord extends EmptyEvent {
     private long id;
     private int smell;
     private int constipation;
