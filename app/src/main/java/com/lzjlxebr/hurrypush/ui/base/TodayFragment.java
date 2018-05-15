@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,6 +46,12 @@ public class TodayFragment extends Fragment implements LoaderManager.LoaderCallb
 
     @BindString(R.string.load_error_msg)
     String loadErrorMsg;
+
+    @BindView(R.id.today_card_1)
+    CardView cardView1;
+
+    @BindView(R.id.today_card_2)
+    CardView cardView2;
 
 
     public static final int INDEX_COLUMN_START_TIME = 0;
@@ -134,7 +141,7 @@ public class TodayFragment extends Fragment implements LoaderManager.LoaderCallb
     private void showErrorMsg() {
         mTvErrorMsg.setText(loadErrorMsg);
         mLoadingIndicator.setVisibility(View.INVISIBLE);
-        mTvErrorMsg.setVisibility(View.VISIBLE);
+        //mTvErrorMsg.setVisibility(View.VISIBLE);
     }
 
     @Override
