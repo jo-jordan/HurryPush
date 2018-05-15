@@ -25,5 +25,4 @@
         android:paddingLeft="@dimen/card_padding_right_left"
         android:paddingRight="@dimen/card_padding_right_left"
         android:paddingStart="@dimen/card_padding_right_left" />
-
 </android.support.design.widget.CoordinatorLayout>

@@ -8,7 +8,6 @@
     <string name="first_time_title">改头换面哈哈哈嗝</string>
     <string name="first_time_content">改头换面哈哈哈嗝</string>
     <string name="first_time_agree">就它了！</string>
-    <string name="first_time_disagree"></string>
 
     <!-- navigation drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -63,8 +62,8 @@
 
     <!-- fab -->
     <string name="floating_action_go_timer">开始我的飞翔吧</string>
-
     <string name="title_activity_start_fly">你在飞翔哦</string>
+    <string name="floating_action_go_survey">结束我的飞翔，进入统计页面</string>
 
     <!-- survey -->
     <string name="title_activity_start_survey">做个调查吧</string>

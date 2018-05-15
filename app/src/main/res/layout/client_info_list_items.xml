@@ -31,5 +31,4 @@
         android:text="0%"
         android:textAlignment="center"
         android:textSize="10sp" />
-
 </LinearLayout>

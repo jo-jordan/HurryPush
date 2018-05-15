@@ -15,7 +15,6 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-
     <fragment
         android:id="@+id/start_fly_fragment"
         android:name="com.lzjlxebr.hurrypush.ui.base.TimerFragment"
@@ -51,9 +50,9 @@
         app:menu_colorPressed="@color/colorPrimaryDark"
         app:menu_colorRipple="@color/colorPrimary"
         app:menu_icon="@drawable/ic_stop"
-        app:menu_labels_colorNormal="@color/colorPrimary"
-        app:menu_labels_colorPressed="@color/colorAccent"
-        app:menu_labels_colorRipple="@color/colorPrimaryDark"
+        app:menu_labels_colorNormal="@color/colorAccent"
+        app:menu_labels_colorPressed="@color/colorPrimaryDark"
+        app:menu_labels_colorRipple="@color/colorAccent"
         app:menu_openDirection="up"
         app:menu_showShadow="true">
 
@@ -64,12 +63,8 @@
             android:src="@drawable/ic_done"
             app:fab_colorNormal="@color/colorAccent"
             app:fab_colorPressed="@color/colorPrimaryDark"
-            app:fab_colorRipple="@color/colorPrimary"
-            app:fab_label="@string/floating_action_go_timer"
+            app:fab_colorRipple="@color/colorAccent"
+            app:fab_label="@string/floating_action_go_survey"
             app:fab_size="mini" />
-
-
     </com.github.clans.fab.FloatingActionMenu>
-
-
 </RelativeLayout>
