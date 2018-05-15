@@ -69,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     String content;
     @BindString(R.string.first_time_agree)
     String agree;
-    @BindString(R.string.first_time_disagree)
-    String disagree;
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
 
