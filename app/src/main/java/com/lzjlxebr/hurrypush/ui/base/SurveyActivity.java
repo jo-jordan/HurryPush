@@ -71,6 +71,7 @@ public class SurveyActivity extends AppCompatActivity {
         }
         if (event instanceof DefecationFinalRecord) {
             addNewResultCardToTheLastOfPager();
+
         }
     }
 
@@ -86,10 +87,16 @@ public class SurveyActivity extends AppCompatActivity {
         mViewPager.setCurrentItem(5);
     }
 
+    private void removeResultCard(int index) {
+        mSurveyCardFragmentAdapter.removeCradView(index);
+        mSurveyCardFragmentAdapter.notifyDataSetChanged();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+
     }
 
     private void initVariables() {

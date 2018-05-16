@@ -51,6 +51,7 @@ public class StartFlyActivity extends AppCompatActivity {
                 Intent stopTimer = new Intent(mContext, TimerService.class);
                 stopService(stopTimer);
                 startSurvey();
+                finish();
             }
         });
     }

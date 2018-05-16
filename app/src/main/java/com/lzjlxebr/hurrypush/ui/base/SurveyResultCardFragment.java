@@ -82,6 +82,8 @@ public class SurveyResultCardFragment extends SurveyCardAbstractFragment {
         Intent intent = new Intent(getContext(), MainActivity.class);
 
         startActivity(intent);
+
+        getActivity().finish();
     }
 
     @Override
@@ -98,6 +100,8 @@ public class SurveyResultCardFragment extends SurveyCardAbstractFragment {
             String content = "获得经验值：" + gainExp + "\n" + "综合评分：" + ratting;
 
             mTvCardContent.setText(content);
+
+            EventBus.getDefault().removeStickyEvent(event);
         }
     }
 }

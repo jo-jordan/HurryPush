@@ -73,4 +73,8 @@ public class SurveyCardFragmentAdapter extends FragmentStatePagerAdapter impleme
     public void addCardFragment(SurveyCardAbstractFragment surveyCardFragment) {
         mFragments.add(surveyCardFragment);
     }
+
+    public void removeCradView(int index) {
+        mFragments.remove(index);
+    }
 }
