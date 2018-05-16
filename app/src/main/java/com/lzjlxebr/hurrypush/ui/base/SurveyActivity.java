@@ -43,6 +43,7 @@ public class SurveyActivity extends AppCompatActivity {
 
         mViewPager.setAdapter(mSurveyCardFragmentAdapter);
         mViewPager.setPageTransformer(false, mShadowTransformer);
+        mViewPager.setOffscreenPageLimit(4);
         setScaleable();
 
         EventBus.getDefault().register(this);

@@ -43,7 +43,6 @@ public class SurveyFinalCardFragment extends SurveyCardAbstractFragment {
     @BindView(R.id.survey_done)
     ImageView mTick;
 
-
     @BindString(R.string.card_content4)
     String content4;
 
